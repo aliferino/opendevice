@@ -1,0 +1,477 @@
+/** Gaya khusus halaman: katalog, detail unit, tentang, syarat, dan 404. */
+
+/* Katalog */
+
+.catalog__toolbar {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  padding: var(--space-5);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  background-color: var(--c-surface);
+}
+
+.catalog__field {
+  min-width: 0;
+}
+
+.catalog__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-5);
+}
+
+.catalog__count {
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+
+.catalog__reset {
+  font-size: var(--step--1);
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.catalog__empty {
+  padding: var(--space-7) var(--space-5);
+  border: 1px dashed var(--c-line-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.catalog__empty-title {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .catalog__toolbar {
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    align-items: end;
+  }
+}
+
+/* Detail unit */
+
+.detail__grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+
+.detail__figure {
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--c-surface);
+}
+
+.detail__figure-note {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.detail__title {
+  font-size: var(--step-4);
+}
+
+.detail__tagline {
+  margin-top: var(--space-3);
+  color: var(--c-muted-strong);
+  font-size: var(--step-1);
+  max-width: 48ch;
+}
+
+.detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.detail__section {
+  margin-top: var(--space-8);
+}
+
+.detail__section-title {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-4);
+}
+
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.detail__paragraph {
+  color: var(--c-muted-strong);
+  max-width: 68ch;
+}
+
+.detail__list {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.detail__list-item {
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--step--1);
+  color: var(--c-muted-strong);
+}
+
+.detail__list-marker {
+  flex: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.55rem;
+  border-radius: 50%;
+  background-color: var(--c-accent);
+}
+
+/* Tabel harga sewa */
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+
+.price-table caption {
+  text-align: left;
+  font-size: var(--step--1);
+  color: var(--c-muted);
+  padding-bottom: var(--space-3);
+}
+
+.price-table th,
+.price-table td {
+  padding: var(--space-3) var(--space-2);
+  text-align: left;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.price-table thead th {
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--c-muted);
+  font-weight: 600;
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.price-table__value {
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.price-table__note {
+  color: var(--c-muted);
+}
+
+/* Spesifikasi */
+
+.spec-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--c-line);
+}
+
+.spec-list__row {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.spec-list__key {
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.spec-list__value {
+  color: var(--c-ink);
+}
+
+@media (min-width: 640px) {
+  .spec-list__row {
+    grid-template-columns: 14rem 1fr;
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+
+  .spec-list__key {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detail__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: var(--space-8);
+  }
+}
+
+/* Tentang kami */
+
+.about__grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+
+.about__prose {
+  display: grid;
+  gap: var(--space-4);
+  color: var(--c-muted-strong);
+  max-width: 62ch;
+}
+
+.about__facts {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about__fact {
+  padding: var(--space-5);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  background-color: var(--c-surface);
+}
+
+.about__fact-value {
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.about__fact-label {
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.about__principle {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--c-line);
+}
+
+.about__principle-title {
+  font-size: var(--step-1);
+  margin-bottom: var(--space-2);
+}
+
+.about__principle-text {
+  color: var(--c-muted-strong);
+  font-size: var(--step--1);
+}
+
+@media (min-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: start;
+  }
+
+  .about__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Syarat dan ketentuan */
+
+.terms__layout {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+
+.terms__nav {
+  align-self: start;
+}
+
+.terms__nav-title {
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: var(--space-3);
+}
+
+.terms__nav-list {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+}
+
+.terms__nav-link {
+  color: var(--c-muted-strong);
+}
+
+.terms__nav-link:hover {
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.terms__section + .terms__section {
+  margin-top: var(--space-7);
+}
+
+.terms__section-title {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-4);
+  scroll-margin-top: calc(var(--page-top) + var(--space-4));
+}
+
+.terms__item {
+  display: flex;
+  gap: var(--space-3);
+  color: var(--c-muted-strong);
+  font-size: var(--step--1);
+}
+
+.terms__item + .terms__item {
+  margin-top: var(--space-3);
+}
+
+.terms__item-marker {
+  flex: none;
+  font-family: var(--font-mono);
+  color: var(--c-accent);
+}
+
+@media (min-width: 1024px) {
+  .terms__layout {
+    grid-template-columns: 16rem 1fr;
+    gap: var(--space-8);
+  }
+
+  .terms__nav {
+    position: sticky;
+    top: calc(var(--page-top) + var(--space-5));
+  }
+}
+
+/* Halaman tidak ditemukan */
+
+.not-found {
+  display: grid;
+  gap: var(--space-5);
+  padding-block: clamp(3rem, 10vw, 7rem);
+  max-width: 56ch;
+}
+
+.not-found__code {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--c-accent);
+  letter-spacing: var(--tracking-wide);
+}
+
+.not-found__title {
+  font-size: var(--step-4);
+}
+
+.not-found__text {
+  color: var(--c-muted-strong);
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* ==== Tambahan untuk halaman Tentang Kami dan Syarat Ketentuan ==== */
+
+.about__figure {
+  margin: 0;
+}
+
+.about__cta,
+.terms__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+.about__principle {
+  padding: var(--space-5);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+}
+
+.about__principle-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--step-1);
+}
+
+.about__principle-text {
+  margin: 0;
+  color: var(--c-muted-strong);
+}
+
+.terms__body {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.terms__list {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terms__contact {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-5) 0 0;
+  grid-template-columns: 1fr;
+}
+
+.terms__contact dt {
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.terms__contact dd {
+  margin: var(--space-1) 0 0;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .terms__contact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .terms__layout {
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    align-items: start;
+  }
+}

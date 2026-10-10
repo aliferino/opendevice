@@ -1,0 +1,83 @@
+/**
+ * Kelas bersama untuk form control, tombol, dan label kecil.
+ * Komponen memakai kelas ini supaya tampilan tetap konsisten
+ * tanpa perlu CSS Modules di setiap komponen.
+ */
+
+.label {
+  display: block;
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: var(--space-2);
+}
+
+.input,
+.select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--c-surface);
+  color: var(--c-ink);
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--c-muted);
+}
+
+.input:hover,
+.select:hover {
+  border-color: var(--c-muted);
+}
+
+.select {
+  appearance: none;
+  cursor: pointer;
+  /* Chevron kecil, digambar sebagai SVG inline agar tidak perlu ikon tambahan. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235b5c63' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  padding-right: var(--space-7);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.note {
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.2rem var(--space-2);
+  font-size: var(--step--1);
+  font-weight: 500;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--c-muted-strong);
+  background-color: var(--c-surface);
+}
+
+.tag--accent {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  background-color: var(--c-accent-soft);
+}
+
+.tag--muted {
+  background-color: var(--c-subtle);
+}

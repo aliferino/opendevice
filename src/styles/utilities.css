@@ -1,0 +1,108 @@
+/** Kelas utilitas yang dipakai berulang di banyak halaman. */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--subtle {
+  background-color: var(--c-subtle);
+  border-block: 1px solid var(--c-line);
+}
+
+.section--tight {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack--2 {
+  gap: var(--space-2);
+}
+
+.stack--3 {
+  gap: var(--space-3);
+}
+
+.stack--4 {
+  gap: var(--space-4);
+}
+
+.stack--5 {
+  gap: var(--space-5);
+}
+
+.stack--6 {
+  gap: var(--space-6);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.grid--2 {
+  grid-template-columns: 1fr;
+}
+
+.grid--3 {
+  grid-template-columns: 1fr;
+}
+
+.grid--catalog {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid--catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--catalog {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.lead {
+  font-size: var(--step-1);
+  color: var(--c-muted-strong);
+  max-width: 60ch;
+}
+
+.text-muted {
+  color: var(--c-muted);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--c-line);
+  border: 0;
+}
+
+/* Elemen dengan atribut data-reveal disembunyikan lewat JS (autoAlpha),
+   bukan lewat CSS, supaya konten tetap tampil bila JavaScript gagal. */
+
+.is-revealed {
+  will-change: auto;
+}

@@ -1,0 +1,94 @@
+/** Gaya Footer. */
+
+.site-footer {
+  border-top: 1px solid var(--c-line);
+  background-color: var(--c-subtle);
+  padding-block: var(--space-7) var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+.site-footer__name {
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.site-footer__text {
+  margin-top: var(--space-3);
+  color: var(--c-muted);
+  font-size: var(--step--1);
+  max-width: 40ch;
+}
+
+.site-footer__heading {
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: var(--space-3);
+}
+
+.site-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+}
+
+.site-footer__link {
+  color: var(--c-muted-strong);
+  transition: color var(--transition-fast);
+}
+
+.site-footer__link:hover {
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-footer__address {
+  font-style: normal;
+  font-size: var(--step--1);
+  color: var(--c-muted-strong);
+  max-width: 30ch;
+}
+
+.site-footer__hours {
+  display: block;
+  margin-top: var(--space-2);
+  color: var(--c-muted);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--c-line);
+}
+
+@media (min-width: 640px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+
+  .site-footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

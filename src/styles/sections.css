@@ -1,0 +1,232 @@
+/** Gaya bagian halaman: hero, layanan, alasan, cara sewa, dan banner CTA. */
+
+/* Hero */
+
+.hero {
+  padding-block: clamp(3rem, 9vw, 6rem) clamp(2.5rem, 7vw, 5rem);
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+
+.hero__title {
+  font-size: var(--step-5);
+  max-width: 20ch;
+}
+
+.hero__text {
+  margin-top: var(--space-5);
+  font-size: var(--step-1);
+  color: var(--c-muted-strong);
+  max-width: 48ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.hero__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--c-line);
+}
+
+.hero__fact-value {
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.hero__fact-label {
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.hero__figure {
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--c-surface);
+}
+
+.hero__figure-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+@media (min-width: 1024px) {
+  .hero__inner {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .hero__facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Layanan */
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--c-ink);
+}
+
+.service__index {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--c-accent);
+}
+
+.service__title {
+  font-size: var(--step-2);
+}
+
+.service__text {
+  color: var(--c-muted-strong);
+  font-size: var(--step--1);
+}
+
+/* Cara sewa */
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+.step {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: auto 1fr;
+  align-items: start;
+}
+
+.step__number {
+  grid-row: span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--c-muted-strong);
+}
+
+.step__title {
+  font-size: var(--step-1);
+}
+
+.step__text {
+  color: var(--c-muted-strong);
+  font-size: var(--step--1);
+}
+
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Alasan memilih */
+
+.reason {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+}
+
+.reason__index {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--c-muted);
+}
+
+.reason__title {
+  font-size: var(--step-1);
+}
+
+.reason__text {
+  color: var(--c-muted-strong);
+  font-size: var(--step--1);
+}
+
+/* Banner CTA */
+
+.cta-banner {
+  background-color: var(--c-ink);
+  color: var(--c-canvas);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.cta-banner__title {
+  font-size: var(--step-3);
+  max-width: 26ch;
+}
+
+.cta-banner__text {
+  color: var(--c-muted);
+  max-width: 52ch;
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.cta-banner .button--primary {
+  background-color: var(--c-canvas);
+  color: var(--c-ink);
+}
+
+.cta-banner .button--secondary {
+  color: var(--c-canvas);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.cta-banner .button--secondary:hover {
+  border-color: var(--c-canvas);
+}
+
+@media (min-width: 900px) {
+  .cta-banner {
+    grid-template-columns: 1.4fr auto;
+    align-items: center;
+  }
+}
