@@ -5,7 +5,6 @@ import { WhyUs } from '../sections/WhyUs'
 import { HowItWorks } from '../sections/HowItWorks'
 import { CtaBanner } from '../sections/CtaBanner'
 import { DataNotice } from '../components/DataNotice'
-import { Container } from '../components/Container'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { usePageTransition } from '../hooks/usePageTransition'
@@ -65,14 +64,14 @@ export function Home() {
 
       <div ref={revealRef}>
         <Services />
-        <FeaturedUnits />
-
-        <Container>
-          <DataNotice>
-            harga, stok, dan spesifikasi di halaman ini adalah contoh. Ganti dengan data toko Anda di
-            src/data/iphone.ts sebelum website dipublikasikan.
-          </DataNotice>
-        </Container>
+        <FeaturedUnits
+          notice={
+            <DataNotice>
+              harga, stok, dan spesifikasi di halaman ini adalah contoh. Ganti dengan data toko Anda di
+              src/data/iphone.ts sebelum website dipublikasikan.
+            </DataNotice>
+          }
+        />
 
         <WhyUs />
         <HowItWorks />
