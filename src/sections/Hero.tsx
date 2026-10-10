@@ -5,8 +5,8 @@ import { MOTION } from '../lib/motion'
 import { SITE } from '../lib/constants'
 
 const FACTS: readonly { readonly value: string; readonly label: string }[] = [
-  { value: '12 unit', label: 'siap disewa hari ini' },
-  { value: 'Harian', label: 'mulai Rp38.000' },
+  { value: '7 unit', label: 'siap disewa hari ini' },
+  { value: 'Harian', label: 'mulai Rp45.000' },
   { value: 'Mingguan', label: 'lebih hemat hingga 20 persen' },
   { value: 'Tanpa akun', label: 'pakai Apple ID Anda sendiri' },
 ]

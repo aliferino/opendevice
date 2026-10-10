@@ -4,7 +4,7 @@
  * sedangkan teks yang tampil ke pengguna ditulis di komponen.
  */
 
-export type IphoneFamily = 'SE' | 'X' | 'XR' | 'XS' | '11' | '12' | '13' | '14' | '15' | '16' | '17'
+export type IphoneFamily = '11' | '12' | '13' | '14' | '15' | '16' | '17'
 
 export type StorageOption = 64 | 128 | 256 | 512
 

@@ -14,7 +14,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 /** Angka ringkas tentang toko. Nilai contoh, ganti sesuai keadaan nyata. */
 const FACTS: readonly { readonly label: string; readonly value: string }[] = [
   { label: 'Berdiri sejak', value: '2019' },
-  { label: 'Unit aktif', value: '12 unit' },
+  { label: 'Unit aktif', value: '7 unit' },
   { label: 'Lokasi', value: SITE.city },
   { label: 'Jam layanan', value: '08.00 sampai 21.00' },
 ]

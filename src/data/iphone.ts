@@ -7,11 +7,18 @@ import type { CatalogFilters, IphoneUnit, SortKey, StorageOption } from '../lib/
  * yang harus diganti pemilik toko sebelum website dipakai produksi.
  * Harga memakai Rupiah dan mewakili tarif sewa, bukan harga jual unit.
  *
+ * Cakupan katalog saat ini: iPhone 11 sampai iPhone 17, varian basic saja.
+ * Varian Pro, Pro Max, X, XR, XS, dan SE sengaja belum dimasukkan dan akan
+ * ditambahkan lagi setelah data resminya siap.
+ *
  * Catatan spesifikasi: angka teknis mengikuti spesifikasi umum tiap model,
  * tetapi tetap wajib diverifikasi ulang ke sumber resmi sebelum terbit.
+ *
+ * Catatan foto: slot gambar masih memakai placeholder. Foto asli sedang
+ * disiapkan oleh tim konten dan akan dipasang setelah berkasnya terkumpul.
  */
 
-export const IPHONE_FAMILIES = ['11', '12', '13', '14', '15', '16', '17', 'X', 'XR', 'XS', 'SE'] as const
+export const IPHONE_FAMILIES = ['11', '12', '13', '14', '15', '16', '17'] as const
 
 export const STORAGE_OPTIONS: readonly StorageOption[] = [64, 128, 256, 512]
 
@@ -41,85 +48,6 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       { storage: 64, price: { perDay: 45_000, perWeek: 250_000 }, available: true },
       { storage: 128, price: { perDay: 55_000, perWeek: 310_000 }, available: true },
       { storage: 256, price: { perDay: 65_000, perWeek: 370_000 }, available: false },
-    ],
-  },
-  {
-    slug: 'iphone-xr',
-    name: 'iPhone XR',
-    family: 'XR',
-    releaseYear: 2018,
-    tagline: 'Layar besar dengan biaya sewa paling ringan',
-    description:
-      'iPhone XR memakai layar Liquid Retina 6,1 inci dengan bodi aluminium yang ringan. Pilihan tepat bila Anda butuh perangkat pendamping untuk panggilan, pesan, dan aplikasi kasir.',
-    condition: 'Cukup',
-    stock: 3,
-    includes: ['Unit iPhone XR', 'Kabel Lightning', 'Adaptor 20W', 'Casing pelindung'],
-    highlights: ['Layar 6,1 inci', 'Bodi aluminium ringan', 'Sewa harian paling murah'],
-    specs: {
-      screen: '6,1 inci Liquid Retina HD, 1792 x 828 piksel',
-      chip: 'Apple A12 Bionic',
-      camera: 'Tunggal 12 MP, depan 7 MP',
-      battery: '2.942 mAh, tahan sekitar 9 jam pemakaian aktif',
-      charging: 'Lightning, fast charge 18W, mendukung pengisian nirkabel Qi',
-      weight: '194 gram',
-      waterResistance: 'IP67, tahan hingga 1 meter selama 30 menit',
-    },
-    variants: [
-      { storage: 64, price: { perDay: 38_000, perWeek: 210_000 }, available: true },
-      { storage: 128, price: { perDay: 48_000, perWeek: 265_000 }, available: true },
-    ],
-  },
-  {
-    slug: 'iphone-xs',
-    name: 'iPhone XS',
-    family: 'XS',
-    releaseYear: 2018,
-    tagline: 'Layar OLED ringkas untuk tangan kecil',
-    description:
-      'iPhone XS punya layar Super Retina OLED 5,8 inci dengan bodi stainless steel. Ukurannya pas untuk satu tangan, dan kualitas layarnya masih terasa mahal untuk kelas sewa ekonomis.',
-    condition: 'Baik',
-    stock: 4,
-    includes: ['Unit iPhone XS', 'Kabel Lightning', 'Adaptor 20W', 'Casing pelindung'],
-    highlights: ['Layar OLED 5,8 inci', 'Bodi stainless steel', 'Kompak dan ringan'],
-    specs: {
-      screen: '5,8 inci Super Retina OLED, 2436 x 1125 piksel',
-      chip: 'Apple A12 Bionic',
-      camera: 'Ganda 12 MP (lebar dan telephoto), depan 7 MP',
-      battery: '2.658 mAh, tahan sekitar 8 jam pemakaian aktif',
-      charging: 'Lightning, fast charge 18W, mendukung pengisian nirkabel Qi',
-      weight: '177 gram',
-      waterResistance: 'IP68, tahan hingga 2 meter selama 30 menit',
-    },
-    variants: [
-      { storage: 64, price: { perDay: 42_000, perWeek: 230_000 }, available: true },
-      { storage: 256, price: { perDay: 58_000, perWeek: 320_000 }, available: true },
-    ],
-  },
-  {
-    slug: 'iphone-se-3',
-    name: 'iPhone SE (generasi ke-3)',
-    family: 'SE',
-    releaseYear: 2022,
-    tagline: 'Tombol Home dan chip kelas flagship',
-    description:
-      'iPhone SE generasi ke-3 memakai bodi klasik dengan tombol Home dan Touch ID, tetapi chipset-nya sekelas iPhone 13. Pilihan bagus untuk pengguna yang belum nyaman dengan navigasi gestur.',
-    condition: 'Sangat baik',
-    stock: 5,
-    includes: ['Unit iPhone SE', 'Kabel Lightning', 'Adaptor 20W', 'Casing pelindung'],
-    highlights: ['Touch ID dan tombol Home', 'Chip A15 Bionic', 'Bodi ringkas 4,7 inci'],
-    specs: {
-      screen: '4,7 inci Retina HD, 1334 x 750 piksel',
-      chip: 'Apple A15 Bionic',
-      camera: 'Tunggal 12 MP, depan 7 MP',
-      battery: '2.018 mAh, tahan sekitar 8 jam pemakaian aktif',
-      charging: 'Lightning, fast charge 20W, mendukung pengisian nirkabel Qi',
-      weight: '144 gram',
-      waterResistance: 'IP67, tahan hingga 1 meter selama 30 menit',
-    },
-    variants: [
-      { storage: 64, price: { perDay: 55_000, perWeek: 300_000 }, available: true },
-      { storage: 128, price: { perDay: 65_000, perWeek: 355_000 }, available: true },
-      { storage: 256, price: { perDay: 78_000, perWeek: 425_000 }, available: true },
     ],
   },
   {
@@ -258,82 +186,29 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     ],
   },
   {
-    slug: 'iphone-16-pro',
-    name: 'iPhone 16 Pro',
-    family: '16',
-    releaseYear: 2024,
-    tagline: 'Bodi titanium dan perekaman ProRes',
-    description:
-      'iPhone 16 Pro memakai rangka titanium dengan layar 6,3 inci dan kamera telephoto 5x. Dipakai untuk produksi video profesional yang butuh format ProRes dan kontrol manual.',
-    condition: 'Sangat baik',
-    stock: 3,
-    includes: ['Unit iPhone 16 Pro', 'Kabel USB-C', 'Adaptor 30W', 'Casing MagSafe', 'Pelindung layar'],
-    highlights: ['Rangka titanium', 'Telephoto 5x', 'Perekaman ProRes 4K'],
-    specs: {
-      screen: '6,3 inci Super Retina XDR OLED ProMotion 120 Hz, 2622 x 1206 piksel',
-      chip: 'Apple A18 Pro',
-      camera: 'Triple 48 MP Fusion, 48 MP ultra lebar, 12 MP telephoto 5x',
-      battery: '3.582 mAh, tahan sekitar 14 jam pemakaian aktif',
-      charging: 'USB-C, MagSafe 25W, fast charge 30W',
-      weight: '199 gram',
-      waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
-    },
-    variants: [
-      { storage: 128, price: { perDay: 225_000, perWeek: 1_250_000 }, available: true },
-      { storage: 256, price: { perDay: 250_000, perWeek: 1_380_000 }, available: true },
-      { storage: 512, price: { perDay: 285_000, perWeek: 1_570_000 }, available: true },
-    ],
-  },
-  {
-    slug: 'iphone-16-pro-max',
-    name: 'iPhone 16 Pro Max',
-    family: '16',
-    releaseYear: 2024,
-    tagline: 'Layar terbesar dengan baterai terlama',
-    description:
-      'iPhone 16 Pro Max memakai layar 6,9 inci dan baterai terbesar di jajaran iPhone 16. Pilihan utama untuk syuting seharian atau perjalanan kerja tanpa sempat mengisi daya.',
-    condition: 'Sangat baik',
-    stock: 4,
-    includes: ['Unit iPhone 16 Pro Max', 'Kabel USB-C', 'Adaptor 30W', 'Casing MagSafe', 'Pelindung layar'],
-    highlights: ['Layar 6,9 inci', 'Baterai paling tahan', 'Zoom optik 5x'],
-    specs: {
-      screen: '6,9 inci Super Retina XDR OLED ProMotion 120 Hz, 2868 x 1320 piksel',
-      chip: 'Apple A18 Pro',
-      camera: 'Triple 48 MP Fusion, 48 MP ultra lebar, 12 MP telephoto 5x',
-      battery: '4.685 mAh, tahan sekitar 16 jam pemakaian aktif',
-      charging: 'USB-C, MagSafe 25W, fast charge 30W',
-      weight: '227 gram',
-      waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
-    },
-    variants: [
-      { storage: 256, price: { perDay: 285_000, perWeek: 1_570_000 }, available: true },
-      { storage: 512, price: { perDay: 320_000, perWeek: 1_760_000 }, available: true },
-    ],
-  },
-  {
-    slug: 'iphone-17-pro',
-    name: 'iPhone 17 Pro',
+    slug: 'iphone-17',
+    name: 'iPhone 17',
     family: '17',
     releaseYear: 2025,
-    tagline: 'Kamera 48 MP di ketiga lensa dan pendingin ruang uap',
+    tagline: 'ProMotion 120 Hz dan kamera depan Center Stage',
     description:
-      'iPhone 17 Pro membawa tiga kamera 48 MP dan sistem pendingin ruang uap untuk pemakaian berat dalam waktu lama. Unit termuda di katalog kami, cocok untuk pekerjaan yang menuntut hasil terbaik.',
+      'iPhone 17 membawa layar ProMotion 120 Hz ke model basic, bersama chip A19 dan kamera depan Center Stage 18 MP. Unit termuda di katalog kami, cocok untuk pekerjaan yang menuntut kelancaran layar dan hasil video terbaik.',
     condition: 'Sangat baik',
-    stock: 2,
-    includes: ['Unit iPhone 17 Pro', 'Kabel USB-C', 'Adaptor 40W', 'Casing MagSafe', 'Pelindung layar'],
-    highlights: ['Tiga kamera 48 MP', 'Pendingin ruang uap', 'Perekaman ProRes RAW'],
+    stock: 4,
+    includes: ['Unit iPhone 17', 'Kabel USB-C', 'Adaptor 40W', 'Casing MagSafe', 'Pelindung layar'],
+    highlights: ['Layar ProMotion 120 Hz', 'Chip A19', 'Kamera depan Center Stage 18 MP'],
     specs: {
       screen: '6,3 inci Super Retina XDR OLED ProMotion 120 Hz, 2622 x 1206 piksel',
-      chip: 'Apple A19 Pro',
-      camera: 'Triple 48 MP Fusion, 48 MP ultra lebar, 48 MP telephoto',
-      battery: '4.252 mAh, tahan sekitar 15 jam pemakaian aktif',
+      chip: 'Apple A19',
+      camera: 'Ganda 48 MP Fusion dan 48 MP ultra lebar, depan 18 MP Center Stage',
+      battery: '3.692 mAh, tahan sekitar 13 jam pemakaian aktif',
       charging: 'USB-C, MagSafe 25W, fast charge 40W',
-      weight: '204 gram',
+      weight: '177 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
     variants: [
-      { storage: 256, price: { perDay: 350_000, perWeek: 1_950_000 }, available: true },
-      { storage: 512, price: { perDay: 395_000, perWeek: 2_190_000 }, available: false },
+      { storage: 256, price: { perDay: 220_000, perWeek: 1_200_000 }, available: true },
+      { storage: 512, price: { perDay: 255_000, perWeek: 1_400_000 }, available: true },
     ],
   },
 ]

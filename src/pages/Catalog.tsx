@@ -32,7 +32,7 @@ const DEFAULT_FILTERS: CatalogFilters = {
  *
  * Filter disimpan di state lokal supaya tidak perlu backend. Karena React
  * Compiler aktif, penghitungan daftar tetap efisien tanpa useMemo manual:
- * hanya satu perhitungan ringan untuk 12 unit.
+ * hanya satu perhitungan ringan untuk 7 unit.
  */
 export function Catalog() {
   useDocumentTitle('Katalog unit iPhone', 'Daftar iPhone yang bisa disewa harian atau mingguan beserta tarifnya.')
