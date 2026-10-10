@@ -39,7 +39,7 @@ export function Terms() {
       </Container>
 
       <Container>
-        <div ref={revealRef}>
+        <div ref={revealRef} className="page-body">
           <DataNotice>
             isi di halaman ini adalah contoh untuk keperluan tampilan. Sebelum website dipublikasikan, ganti dengan
             pasal yang sudah diperiksa dan disetujui pemilik toko di src/lib/constants.ts

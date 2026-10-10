@@ -67,7 +67,7 @@ export function About() {
       </Container>
 
       <Container>
-        <div ref={revealRef}>
+        <div ref={revealRef} className="page-body">
           <div className="about__grid">
             <div className="about__prose" data-reveal>
               <SectionHeading

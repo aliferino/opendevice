@@ -65,6 +65,13 @@
   grid-template-columns: 1fr;
 }
 
+/* Item grid bisa meluber bila isinya punya lebar intrinsik besar. min-width: 0
+   membuat kolom boleh menyusut, sehingga gambar tidak menembus tepi layar di
+   ponsel. */
+.detail__grid > * {
+  min-width: 0;
+}
+
 .detail__figure {
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
@@ -138,8 +145,16 @@
 
 /* Tabel harga sewa */
 
+/* Pembungkus tabel agar bisa digulir horizontal di layar sempit tanpa membuat
+   seluruh halaman meluber. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .price-table {
   width: 100%;
+  min-width: 32rem;
   border-collapse: collapse;
   font-size: var(--step--1);
 }
@@ -262,32 +277,6 @@
   color: var(--c-muted);
 }
 
-.about__principle {
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--c-line);
-}
-
-.about__principle-title {
-  font-size: var(--step-1);
-  margin-bottom: var(--space-2);
-}
-
-.about__principle-text {
-  color: var(--c-muted-strong);
-  font-size: var(--step--1);
-}
-
-@media (min-width: 1024px) {
-  .about__grid {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: start;
-  }
-
-  .about__facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 /* Syarat dan ketentuan */
 
 .terms__layout {
@@ -352,12 +341,18 @@
   color: var(--c-accent);
 }
 
-@media (min-width: 1024px) {
+/* Satu definisi .terms__layout per breakpoint.
+   900px: dua kolom, daftar isi di kiri.
+   1024px: hanya menambah sticky pada daftar isi, kolom tidak diubah lagi. */
+@media (min-width: 900px) {
   .terms__layout {
-    grid-template-columns: 16rem 1fr;
+    grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
     gap: var(--space-8);
+    align-items: start;
   }
+}
 
+@media (min-width: 1024px) {
   .terms__nav {
     position: sticky;
     top: calc(var(--page-top) + var(--space-5));
@@ -428,6 +423,7 @@
 .about__principle-text {
   margin: 0;
   color: var(--c-muted-strong);
+  font-size: var(--step--1);
 }
 
 .terms__body {
@@ -469,11 +465,6 @@
 @media (min-width: 900px) {
   .about__grid {
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    align-items: start;
-  }
-
-  .terms__layout {
-    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
     align-items: start;
   }
 }

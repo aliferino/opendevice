@@ -89,7 +89,8 @@ export function DetailUnit({ slug }: DetailUnitProps) {
 
               <div className="detail__section" data-reveal>
                 <h2 className="detail__section-title">Harga sewa</h2>
-                <table className="price-table">
+                <div className="table-scroll">
+                  <table className="price-table">
                   <caption>
                     Tarif sewa {unit.name} per kapasitas. Harga mingguan berlaku untuk 7 hari kalender.
                   </caption>
@@ -111,7 +112,8 @@ export function DetailUnit({ slug }: DetailUnitProps) {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                  </table>
+                </div>
               </div>
 
               <div className="detail__section" data-reveal>
