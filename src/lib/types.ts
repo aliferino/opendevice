@@ -6,8 +6,6 @@
 
 export type IphoneFamily = '11' | '12' | '13' | '14' | '15' | '16' | '17'
 
-export type StorageOption = 64 | 128 | 256 | 512
-
 export type UnitCondition = 'Sangat baik' | 'Baik' | 'Cukup'
 
 export interface RentalPrice {
@@ -25,12 +23,6 @@ export interface IphoneSpec {
   readonly waterResistance: string
 }
 
-export interface IphoneVariant {
-  readonly storage: StorageOption
-  readonly price: RentalPrice
-  readonly available: boolean
-}
-
 export interface IphoneUnit {
   readonly slug: string
   readonly name: string
@@ -43,14 +35,15 @@ export interface IphoneUnit {
   readonly includes: readonly string[]
   readonly highlights: readonly string[]
   readonly specs: IphoneSpec
-  readonly variants: readonly IphoneVariant[]
+  readonly rentalPrice: RentalPrice
+  /** Unit ini termasuk yang paling sering disewa. Dipakai untuk label di kartu. */
+  readonly popular: boolean
 }
 
 export type SortKey = 'newest' | 'price-asc' | 'price-desc'
 
 export interface CatalogFilters {
   readonly family: string
-  readonly storage: string
   readonly keyword: string
   readonly sort: SortKey
 }

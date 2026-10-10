@@ -1,4 +1,4 @@
-import type { CatalogFilters, IphoneUnit, SortKey, StorageOption } from '../lib/types'
+import type { CatalogFilters, IphoneUnit, SortKey } from '../lib/types'
 
 /**
  * DATA CONTOH.
@@ -19,8 +19,6 @@ import type { CatalogFilters, IphoneUnit, SortKey, StorageOption } from '../lib/
  */
 
 export const IPHONE_FAMILIES = ['11', '12', '13', '14', '15', '16', '17'] as const
-
-export const STORAGE_OPTIONS: readonly StorageOption[] = [64, 128, 256, 512]
 
 export const IPHONE_UNITS: readonly IphoneUnit[] = [
   {
@@ -44,11 +42,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '194 gram',
       waterResistance: 'IP68, tahan hingga 2 meter selama 30 menit',
     },
-    variants: [
-      { storage: 64, price: { perDay: 45_000, perWeek: 250_000 }, available: true },
-      { storage: 128, price: { perDay: 55_000, perWeek: 310_000 }, available: true },
-      { storage: 256, price: { perDay: 65_000, perWeek: 370_000 }, available: false },
-    ],
+    rentalPrice: { perDay: 45_000, perWeek: 250_000 },
+    popular: true,
   },
   {
     slug: 'iphone-12',
@@ -71,11 +66,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '164 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    variants: [
-      { storage: 64, price: { perDay: 65_000, perWeek: 355_000 }, available: true },
-      { storage: 128, price: { perDay: 75_000, perWeek: 410_000 }, available: true },
-      { storage: 256, price: { perDay: 88_000, perWeek: 480_000 }, available: true },
-    ],
+    rentalPrice: { perDay: 65_000, perWeek: 355_000 },
+    popular: false,
   },
   {
     slug: 'iphone-13',
@@ -98,11 +90,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '174 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    variants: [
-      { storage: 128, price: { perDay: 90_000, perWeek: 490_000 }, available: true },
-      { storage: 256, price: { perDay: 105_000, perWeek: 570_000 }, available: true },
-      { storage: 512, price: { perDay: 125_000, perWeek: 680_000 }, available: false },
-    ],
+    rentalPrice: { perDay: 90_000, perWeek: 490_000 },
+    popular: true,
   },
   {
     slug: 'iphone-14',
@@ -125,11 +114,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '172 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    variants: [
-      { storage: 128, price: { perDay: 110_000, perWeek: 600_000 }, available: true },
-      { storage: 256, price: { perDay: 125_000, perWeek: 680_000 }, available: true },
-      { storage: 512, price: { perDay: 145_000, perWeek: 790_000 }, available: true },
-    ],
+    rentalPrice: { perDay: 110_000, perWeek: 600_000 },
+    popular: false,
   },
   {
     slug: 'iphone-15',
@@ -152,11 +138,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '171 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    variants: [
-      { storage: 128, price: { perDay: 135_000, perWeek: 740_000 }, available: true },
-      { storage: 256, price: { perDay: 150_000, perWeek: 820_000 }, available: true },
-      { storage: 512, price: { perDay: 175_000, perWeek: 950_000 }, available: true },
-    ],
+    rentalPrice: { perDay: 135_000, perWeek: 740_000 },
+    popular: true,
   },
   {
     slug: 'iphone-16',
@@ -179,11 +162,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '170 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    variants: [
-      { storage: 128, price: { perDay: 165_000, perWeek: 900_000 }, available: true },
-      { storage: 256, price: { perDay: 185_000, perWeek: 1_010_000 }, available: true },
-      { storage: 512, price: { perDay: 215_000, perWeek: 1_180_000 }, available: true },
-    ],
+    rentalPrice: { perDay: 165_000, perWeek: 900_000 },
+    popular: false,
   },
   {
     slug: 'iphone-17',
@@ -206,10 +186,8 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '177 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    variants: [
-      { storage: 256, price: { perDay: 220_000, perWeek: 1_200_000 }, available: true },
-      { storage: 512, price: { perDay: 255_000, perWeek: 1_400_000 }, available: true },
-    ],
+    rentalPrice: { perDay: 220_000, perWeek: 1_200_000 },
+    popular: false,
   },
 ]
 
@@ -235,25 +213,14 @@ export function getFamilies(): readonly string[] {
   return [...years.entries()].sort((a, b) => b[1] - a[1]).map(([family]) => family)
 }
 
-/** Harga sewa harian terendah dari seluruh varian unit. */
-export function getLowestDailyPrice(unit: IphoneUnit): number {
-  return unit.variants.reduce((lowest, variant) => Math.min(lowest, variant.price.perDay), Number.POSITIVE_INFINITY)
+/** Harga sewa harian unit. */
+export function getDailyPrice(unit: IphoneUnit): number {
+  return unit.rentalPrice.perDay
 }
 
-/** Harga sewa mingguan terendah dari seluruh varian unit. */
-export function getLowestWeeklyPrice(unit: IphoneUnit): number {
-  return unit.variants.reduce((lowest, variant) => Math.min(lowest, variant.price.perWeek), Number.POSITIVE_INFINITY)
-}
-
-/** Semua opsi kapasitas yang benar benar tersedia di katalog. */
-export function getAvailableStorages(): readonly StorageOption[] {
-  const used = new Set<StorageOption>()
-  for (const unit of IPHONE_UNITS) {
-    for (const variant of unit.variants) {
-      used.add(variant.storage)
-    }
-  }
-  return STORAGE_OPTIONS.filter((storage) => used.has(storage))
+/** Harga sewa mingguan unit. */
+export function getWeeklyPrice(unit: IphoneUnit): number {
+  return unit.rentalPrice.perWeek
 }
 
 /** Unit sejenis untuk blok rekomendasi di halaman detail. */
@@ -277,12 +244,6 @@ export function filterUnits(units: readonly IphoneUnit[], filters: CatalogFilter
     if (filters.family !== 'all' && unit.family !== filters.family) {
       return false
     }
-    if (filters.storage !== 'all') {
-      const storage = Number(filters.storage)
-      if (!unit.variants.some((variant) => variant.storage === storage)) {
-        return false
-      }
-    }
     if (keyword.length > 0) {
       const haystack = `${unit.name} ${unit.tagline} ${unit.description}`.toLowerCase()
       if (!haystack.includes(keyword)) {
@@ -299,10 +260,10 @@ export function filterUnits(units: readonly IphoneUnit[], filters: CatalogFilter
 export function sortUnits(units: readonly IphoneUnit[], sort: SortKey): readonly IphoneUnit[] {
   const copy = [...units]
   if (sort === 'price-asc') {
-    return copy.sort((a, b) => getLowestDailyPrice(a) - getLowestDailyPrice(b))
+    return copy.sort((a, b) => getDailyPrice(a) - getDailyPrice(b))
   }
   if (sort === 'price-desc') {
-    return copy.sort((a, b) => getLowestDailyPrice(b) - getLowestDailyPrice(a))
+    return copy.sort((a, b) => getDailyPrice(b) - getDailyPrice(a))
   }
   return copy.sort((a, b) => b.releaseYear - a.releaseYear || a.name.localeCompare(b.name))
 }
