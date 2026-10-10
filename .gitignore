@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Folder sementara milik alat bantu, misalnya .hermes-tmp.abc123.
+# Hanya di root, jadi folder bernama serupa di dalam subfolder tidak terabaikan.
+/.hermes-tmp.*
+
+# Skrip bantu bertanda titik di root, misalnya .push.sh, .probe.sh,
+# .commit-notice.sh, dan .cleanup.sh. Pola diawali garis miring supaya hanya
+# berlaku di root project. Skrip resmi di dalam subfolder seperti scripts/
+# (contoh scripts/build.sh) tetap bisa dilacak, dan skrip tanpa tanda titik di
+# root juga tidak terabaikan.
+/.*.sh
+/.probe.sh
