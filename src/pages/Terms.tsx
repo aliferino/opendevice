@@ -2,6 +2,8 @@ import { Container } from '../components/Container'
 import { PageHeader } from '../components/PageHeader'
 import { ButtonLink } from '../components/Button'
 import { DataNotice } from '../components/DataNotice'
+import { Icon } from '../components/Icon'
+import { Check } from 'lucide-react'
 import { SITE, TERMS_SECTIONS } from '../lib/constants'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { usePageTransition } from '../hooks/usePageTransition'
@@ -66,7 +68,7 @@ export function Terms() {
                   <ol className="terms__list">
                     {section.items.map((item) => (
                       <li className="terms__item" key={item}>
-                        <span className="terms__item-marker" aria-hidden="true" />
+                        <Icon icon={Check} size="sm" className="terms__item-marker" />
                         <span>{item}</span>
                       </li>
                     ))}

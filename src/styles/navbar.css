@@ -24,10 +24,7 @@
 }
 
 .site-header__mark {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 3px;
-  background-color: var(--c-accent);
+  color: var(--c-accent);
 }
 
 .site-header__word {
@@ -77,39 +74,8 @@
   border: 1px solid var(--c-line-strong);
 }
 
-.site-header__toggle-bars,
-.site-header__toggle-bars::before,
-.site-header__toggle-bars::after {
-  display: block;
-  width: 1.05rem;
-  height: 1.5px;
-  background-color: var(--c-ink);
-  content: '';
-  position: relative;
-}
-
-.site-header__toggle-bars::before {
-  position: absolute;
-  top: -5px;
-}
-
-.site-header__toggle-bars::after {
-  position: absolute;
-  top: 5px;
-}
-
-.site-header__toggle[aria-expanded='true'] .site-header__toggle-bars {
-  background-color: transparent;
-}
-
-.site-header__toggle[aria-expanded='true'] .site-header__toggle-bars::before {
-  transform: rotate(45deg);
-  top: 0;
-}
-
-.site-header__toggle[aria-expanded='true'] .site-header__toggle-bars::after {
-  transform: rotate(-45deg);
-  top: 0;
+.site-header__toggle:hover {
+  border-color: var(--c-muted);
 }
 
 .site-header__panel {

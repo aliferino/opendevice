@@ -38,11 +38,22 @@
 .select {
   appearance: none;
   cursor: pointer;
-  /* Chevron kecil, digambar sebagai SVG inline agar tidak perlu ikon tambahan. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235b5c63' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right var(--space-3) center;
   padding-right: var(--space-7);
+}
+
+/* Pembungkus select supaya ikon chevron lucide bisa ditumpuk di kanan. */
+.select-wrap {
+  position: relative;
+  display: block;
+}
+
+.select-wrap__icon {
+  position: absolute;
+  top: 50%;
+  right: var(--space-3);
+  transform: translateY(-50%);
+  color: var(--c-muted);
+  pointer-events: none;
 }
 
 .eyebrow {

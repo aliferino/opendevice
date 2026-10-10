@@ -1,8 +1,10 @@
+import { ChevronDown } from 'lucide-react'
 import { Container } from '../components/Container'
 import { PageHeader } from '../components/PageHeader'
 import { IphoneCard } from '../components/IphoneCard'
 import { DataNotice } from '../components/DataNotice'
 import { ButtonLink, ButtonAction } from '../components/Button'
+import { Icon } from '../components/Icon'
 import { filterUnits, getAvailableStorages, getFamilies, getAllUnits } from '../data/iphone'
 import { formatStorage } from '../lib/format'
 import type { CatalogFilters, SortKey } from '../lib/types'
@@ -76,56 +78,65 @@ export function Catalog() {
             <label className="label" htmlFor="catalog-family">
               Seri
             </label>
-            <select
-              id="catalog-family"
-              className="select"
-              value={filters.family}
-              onChange={(event) => setFilters({ ...filters, family: event.target.value })}
-            >
-              <option value="all">Semua seri</option>
-              {families.map((family) => (
-                <option key={family} value={family}>
-                  Seri {family}
-                </option>
-              ))}
-            </select>
+            <span className="select-wrap">
+              <select
+                id="catalog-family"
+                className="select"
+                value={filters.family}
+                onChange={(event) => setFilters({ ...filters, family: event.target.value })}
+              >
+                <option value="all">Semua seri</option>
+                {families.map((family) => (
+                  <option key={family} value={family}>
+                    Seri {family}
+                  </option>
+                ))}
+              </select>
+              <Icon icon={ChevronDown} size="sm" className="select-wrap__icon" />
+            </span>
           </div>
 
           <div className="catalog__field">
             <label className="label" htmlFor="catalog-storage">
               Kapasitas
             </label>
-            <select
-              id="catalog-storage"
-              className="select"
-              value={filters.storage}
-              onChange={(event) => setFilters({ ...filters, storage: event.target.value })}
-            >
-              <option value="all">Semua kapasitas</option>
-              {storages.map((storage) => (
-                <option key={storage} value={storage}>
-                  {formatStorage(storage)}
-                </option>
-              ))}
-            </select>
+            <span className="select-wrap">
+              <select
+                id="catalog-storage"
+                className="select"
+                value={filters.storage}
+                onChange={(event) => setFilters({ ...filters, storage: event.target.value })}
+              >
+                <option value="all">Semua kapasitas</option>
+                {storages.map((storage) => (
+                  <option key={storage} value={storage}>
+                    {formatStorage(storage)}
+                  </option>
+                ))}
+              </select>
+              <Icon icon={ChevronDown} size="sm" className="select-wrap__icon" />
+            </span>
           </div>
 
           <div className="catalog__field">
             <label className="label" htmlFor="catalog-sort">
               Urutkan
             </label>
-            <select
-              id="catalog-sort"
-              className="select"
-              value={filters.sort}
-              onChange={(event) => setFilters({ ...filters, sort: event.target.value as SortKey })}
-            >
-              {SORT_LABELS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <span className="select-wrap">
+              <select
+                id="catalog-sort"
+                className="select"
+                value={filters.sort}
+                onChange={(event) => setFilters({ ...filters, sort: event.target.value as SortKey })}
+              >
+                {SORT_LABELS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <Icon icon={ChevronDown} size="sm" className="select-wrap__icon" />
+            </span>
           </div>
         </div>
 

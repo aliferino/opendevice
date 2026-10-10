@@ -195,6 +195,7 @@
 
 .breadcrumbs__separator {
   color: var(--c-line-strong);
+  flex: none;
 }
 
 /* Catatan data contoh */
@@ -211,6 +212,12 @@
   border-radius: var(--radius-sm);
   font-size: var(--step--1);
   color: var(--c-muted-strong);
+}
+
+.data-notice__icon {
+  flex: none;
+  align-self: center;
+  color: var(--c-accent);
 }
 
 .data-notice__tag {

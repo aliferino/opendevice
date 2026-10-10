@@ -1,8 +1,10 @@
 import { useEffect, useId, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { Menu, Smartphone, X } from 'lucide-react'
 import { NAV_ITEMS, SITE } from '../lib/constants'
 import { useRefreshOnUpdate } from '../hooks/useScrollRefresh'
 import { Container } from './Container'
+import { Icon } from './Icon'
 
 /**
  * Navbar minimalis dengan panel menu untuk layar kecil.
@@ -38,7 +40,7 @@ export function Navbar() {
     <header className="site-header">
       <Container className="site-header__inner">
         <Link to="/" className="site-header__brand" aria-label={`${SITE.name} beranda`}>
-          <span className="site-header__mark" aria-hidden="true" />
+          <Icon icon={Smartphone} size="md" className="site-header__mark" />
           <span className="site-header__word">{SITE.name}</span>
         </Link>
 
@@ -74,7 +76,7 @@ export function Navbar() {
           aria-controls={panelId}
           onClick={() => setIsOpen((open) => !open)}
         >
-          <span className="site-header__toggle-bars" aria-hidden="true" />
+          <Icon icon={isOpen ? X : Menu} size="md" />
           <span className="visually-hidden">{isOpen ? 'Tutup menu' : 'Buka menu'}</span>
         </button>
       </Container>

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
+import { ChevronRight } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { Icon } from './Icon'
 
 export interface BreadcrumbsProps {
   readonly items: readonly { readonly label: string; readonly to?: string }[]
@@ -23,11 +25,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
           return (
             <li key={`${item.label}-${index}`} className="breadcrumbs__item">
               {content}
-              {isLast ? null : (
-                <span className="breadcrumbs__separator" aria-hidden="true">
-                  /
-                </span>
-              )}
+              {isLast ? null : <Icon icon={ChevronRight} size="sm" className="breadcrumbs__separator" />}
             </li>
           )
         })}

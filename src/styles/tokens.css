@@ -30,7 +30,7 @@
   --c-danger-soft: #fbeceb;
 
   /* Tipografi */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, monospace;
 
   --step--1: clamp(0.8125rem, 0.79rem + 0.11vw, 0.875rem);

@@ -90,9 +90,7 @@
   border-top: 2px solid var(--c-ink);
 }
 
-.service__index {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
+.service__icon {
   color: var(--c-accent);
 }
 
@@ -168,10 +166,9 @@
   border-radius: var(--radius-md);
 }
 
-.reason__index {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  color: var(--c-muted);
+.reason__icon {
+  color: var(--c-accent);
+  margin-bottom: var(--space-1);
 }
 
 .reason__title {

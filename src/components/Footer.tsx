@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { AtSign, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { NAV_ITEMS, SITE } from '../lib/constants'
 import { Container } from './Container'
+import { Icon } from './Icon'
 
 /** Footer memuat identitas toko, navigasi singkat, dan kanal kontak. */
 export function Footer() {
@@ -31,25 +33,36 @@ export function Footer() {
           <div className="site-footer__column">
             <h2 className="site-footer__heading">Kontak</h2>
             <ul className="site-footer__list">
-              <li>
+              <li className="site-footer__item">
+                <Icon icon={Phone} size="sm" />
                 <a className="site-footer__link" href={`tel:${SITE.phone.replace(/[^+\d]/g, '')}`}>
                   Telepon {SITE.phone}
                 </a>
               </li>
-              <li>
+              <li className="site-footer__item">
+                <Icon icon={Mail} size="sm" />
                 <a className="site-footer__link" href={`mailto:${SITE.email}`}>
                   {SITE.email}
                 </a>
               </li>
-              <li>WhatsApp {SITE.whatsapp}</li>
-              <li>Instagram {SITE.instagram}</li>
+              <li className="site-footer__item">
+                <Icon icon={MessageCircle} size="sm" />
+                <span>WhatsApp {SITE.whatsapp}</span>
+              </li>
+              <li className="site-footer__item">
+                <Icon icon={AtSign} size="sm" />
+                <span>Instagram {SITE.instagram}</span>
+              </li>
             </ul>
           </div>
 
           <div className="site-footer__column">
             <h2 className="site-footer__heading">Alamat</h2>
             <address className="site-footer__address">
-              {SITE.address}
+              <span className="site-footer__item">
+                <Icon icon={MapPin} size="sm" />
+                <span>{SITE.address}</span>
+              </span>
               <span className="site-footer__hours">{SITE.hours}</span>
             </address>
           </div>

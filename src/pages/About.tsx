@@ -1,8 +1,11 @@
+import { BadgeCheck, FileText, HeartHandshake, Users } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { Container } from '../components/Container'
 import { PageHeader } from '../components/PageHeader'
 import { SectionHeading } from '../components/SectionHeading'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { ButtonLink } from '../components/Button'
+import { Icon } from '../components/Icon'
 import { SITE, WHY_US } from '../lib/constants'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { usePageTransition } from '../hooks/usePageTransition'
@@ -17,20 +20,30 @@ const FACTS: readonly { readonly label: string; readonly value: string }[] = [
 ]
 
 /** Prinsip kerja yang dipegang toko. */
-const PRINCIPLES: readonly { readonly title: string; readonly body: string }[] = [
+const PRINCIPLES: readonly {
+  readonly title: string
+  readonly body: string
+  readonly icon: LucideIcon
+}[] = [
   {
     title: 'Transparan sejak awal',
     body: 'Tarif, deposit, dan syarat kami sampaikan sebelum Anda memutuskan. Tidak ada biaya yang muncul di tengah masa sewa tanpa persetujuan Anda.',
+    icon: FileText,
   },
   {
     title: 'Perangkat siap pakai',
     body: 'Unit diserahkan dalam keadaan bersih, terisi daya, dan sudah melewati pemeriksaan fungsi. Anda tidak perlu menyiapkan apa pun selain Apple ID sendiri.',
+    icon: BadgeCheck,
   },
   {
     title: 'Manusia yang menjawab',
     body: 'Semua pertanyaan dijawab langsung oleh tim toko, bukan bot. Kalau ada kendala di tengah masa sewa, Anda bisa menghubungi kami di jam layanan.',
+    icon: Users,
   },
 ]
+
+/** Ikon untuk daftar alasan, dipetakan berdasarkan urutan di constants. */
+const REASON_ICONS: readonly LucideIcon[] = [HeartHandshake, BadgeCheck, FileText, Users]
 
 /**
  * Halaman Tentang Kami.
@@ -103,9 +116,9 @@ export function About() {
           />
 
           <div className="about__grid">
-            {PRINCIPLES.map((item, index) => (
+            {PRINCIPLES.map((item) => (
               <article className="about__principle" key={item.title} data-reveal>
-                <span className="reason__index">{String(index + 1).padStart(2, '0')}</span>
+                <Icon icon={item.icon} size="lg" className="about__principle-icon" />
                 <h3 className="about__principle-title">{item.title}</h3>
                 <p className="about__principle-text">{item.body}</p>
               </article>
@@ -119,8 +132,9 @@ export function About() {
           />
 
           <ul className="grid grid--2">
-            {WHY_US.map((item) => (
+            {WHY_US.map((item, index) => (
               <li className="reason" key={item.title} data-reveal>
+                <Icon icon={REASON_ICONS[index] ?? BadgeCheck} size="lg" className="reason__icon" />
                 <h3 className="reason__title">{item.title}</h3>
                 <p className="reason__text">{item.body}</p>
               </li>

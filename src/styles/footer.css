@@ -42,6 +42,18 @@
   font-size: var(--step--1);
 }
 
+.site-footer__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.site-footer__item > svg {
+  flex: none;
+  margin-top: 0.15rem;
+  color: var(--c-muted);
+}
+
 .site-footer__link {
   color: var(--c-muted-strong);
   transition: color var(--transition-fast);

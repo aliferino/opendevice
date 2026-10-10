@@ -6,6 +6,8 @@ import { Breadcrumbs } from '../components/Breadcrumbs'
 import { ButtonExtLink, ButtonLink } from '../components/Button'
 import { DataNotice } from '../components/DataNotice'
 import { IphoneCard } from '../components/IphoneCard'
+import { Icon } from '../components/Icon'
+import { Check } from 'lucide-react'
 import { getRelatedUnits, getUnitBySlug } from '../data/iphone'
 import { formatRupiah, formatStorage } from '../lib/format'
 import { SITE } from '../lib/constants'
@@ -117,7 +119,7 @@ export function DetailUnit({ slug }: DetailUnitProps) {
                 <ul className="detail__list">
                   {unit.includes.map((item) => (
                     <li className="detail__list-item" key={item}>
-                      <span className="detail__list-marker" aria-hidden="true" />
+                      <Icon icon={Check} size="sm" className="detail__list-marker" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -150,7 +152,7 @@ export function DetailUnit({ slug }: DetailUnitProps) {
             <ul className="detail__list" data-reveal>
               {unit.highlights.map((highlight) => (
                 <li className="detail__list-item" key={highlight}>
-                  <span className="detail__list-marker" aria-hidden="true" />
+                  <Icon icon={Check} size="sm" className="detail__list-marker" />
                   <span>{highlight}</span>
                 </li>
               ))}

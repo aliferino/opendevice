@@ -1,6 +1,12 @@
+import { BadgeCheck, KeyRound, RefreshCw, ShieldCheck } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { Container } from '../components/Container'
 import { SectionHeading } from '../components/SectionHeading'
+import { Icon } from '../components/Icon'
 import { WHY_US } from '../lib/constants'
+
+/** Ikon untuk tiap alasan, dipetakan berdasarkan urutan daftar di constants. */
+const REASON_ICONS: readonly LucideIcon[] = [ShieldCheck, BadgeCheck, KeyRound, RefreshCw]
 
 /** Alasan memilih toko, disusun sebagai daftar bernomor agar mudah dipindai. */
 export function WhyUs() {
@@ -20,7 +26,11 @@ export function WhyUs() {
           {WHY_US.map((reason, index) => (
             <li key={reason.title} data-reveal>
               <div className="reason">
-                <span className="reason__index">{String(index + 1).padStart(2, '0')}</span>
+                <Icon
+                  icon={REASON_ICONS[index] ?? ShieldCheck}
+                  size="lg"
+                  className="reason__icon"
+                />
                 <h3 className="reason__title">{reason.title}</h3>
                 <p className="reason__text">{reason.body}</p>
               </div>

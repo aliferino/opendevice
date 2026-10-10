@@ -132,11 +132,8 @@
 
 .detail__list-marker {
   flex: none;
-  width: 0.4rem;
-  height: 0.4rem;
-  margin-top: 0.55rem;
-  border-radius: 50%;
-  background-color: var(--c-accent);
+  margin-top: 0.35rem;
+  color: var(--c-accent);
 }
 
 /* Tabel harga sewa */
@@ -351,7 +348,7 @@
 
 .terms__item-marker {
   flex: none;
-  font-family: var(--font-mono);
+  margin-top: 0.3rem;
   color: var(--c-accent);
 }
 
@@ -416,6 +413,11 @@
   border: 1px solid var(--c-line);
   border-radius: var(--radius-lg);
   background: var(--c-surface);
+}
+
+.about__principle-icon {
+  color: var(--c-accent);
+  margin-bottom: var(--space-3);
 }
 
 .about__principle-title {
