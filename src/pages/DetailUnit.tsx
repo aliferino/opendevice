@@ -42,7 +42,7 @@ export function DetailUnit({ slug }: DetailUnitProps) {
   const unit = getUnitBySlug(slug)
   useDocumentTitle(unit === undefined ? 'Unit tidak ditemukan' : unit.name)
   const pageRef = usePageTransition<HTMLDivElement>()
-  const revealRef = useScrollReveal<HTMLDivElement>({ once: true })
+  const revealRef = useScrollReveal<HTMLDivElement>()
 
   if (unit === undefined) {
     return <NotFound />

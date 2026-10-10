@@ -26,7 +26,7 @@ function toAnchor(title: string): string {
 export function Terms() {
   useDocumentTitle('Syarat dan ketentuan sewa', 'Ketentuan penyewaan unit iPhone di OpenDevice.')
   const pageRef = usePageTransition<HTMLDivElement>()
-  const revealRef = useScrollReveal<HTMLDivElement>({ once: true })
+  const revealRef = useScrollReveal<HTMLDivElement>()
 
   return (
     <div ref={pageRef}>

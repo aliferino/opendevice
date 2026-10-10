@@ -1,25 +1,32 @@
 import { useEffect, useRef } from 'react'
 import type { RefObject } from 'react'
-import { gsap, MOTION, REVEALED_CLASS, REVEAL_SELECTOR, ScrollTrigger, useGSAP } from '../lib/motion'
+import { EASE, gsap, MOTION, REVEALED_CLASS, REVEAL_SELECTOR, ScrollTrigger, useGSAP } from '../lib/motion'
 import { usePrefersReducedMotion } from './useReducedMotion'
 
 export interface ScrollRevealOptions {
-  /** true berarti animasi juga dijalankan ulang setiap kali dependensi berubah. */
-  readonly replayOnDependencies?: boolean
   /** Jeda antar elemen di dalam satu kelompok. */
   readonly stagger?: number
-  /** Mulai animasi begitu elemen terlihat, tanpa animasi keluar masuk. */
-  readonly once?: boolean
 }
 
 /**
- * Reveal saat scroll memakai ScrollTrigger.batch.
+ * Reveal dua arah saat scroll memakai ScrollTrigger.batch.
  *
  * Kenapa memakai hook ini dan bukan useEffect mentah:
  * 1. useGSAP memakai gsap.context, jadi semua Tween dan ScrollTrigger yang
  *    dibuat di dalamnya otomatis di-revert saat komponen dilepas.
  * 2. Selector di dalam scope hanya mencari turunan container, jadi tidak
  *    perlu satu ref untuk setiap elemen.
+ *
+ * Perilaku animasi sengaja dua arah, bukan sekali jalan:
+ * - onEnter dan onEnterBack menampilkan elemen saat masuk viewport, baik dari
+ *   bawah maupun dari atas.
+ * - onLeave dan onLeaveBack mengembalikan elemen ke keadaan awal saat keluar
+ *   viewport, baik ke atas maupun ke bawah. Ini yang membuat animasi terlihat
+ *   lagi setiap kali pengguna scroll bolak balik.
+ *
+ * ScrollTrigger.batch di sini TIDAK memakai once: true. Dengan once, trigger
+ * mematikan dirinya setelah animasi pertama, sehingga elemen tidak pernah
+ * kembali ke keadaan awal dan animasi hanya terlihat sekali.
  *
  * Tinggal tambahkan atribut data-reveal pada elemen yang ingin dianimasikan.
  */
@@ -28,7 +35,7 @@ export function useScrollReveal<T extends HTMLElement>(
 ): RefObject<T | null> {
   const container = useRef<T>(null)
   const prefersReducedMotion = usePrefersReducedMotion()
-  const { replayOnDependencies = false, stagger = MOTION.stagger, once = true } = options
+  const { stagger = MOTION.stagger } = options
 
   useGSAP(
     () => {
@@ -37,32 +44,51 @@ export function useScrollReveal<T extends HTMLElement>(
         return
       }
 
-      // Hormati preferensi pengguna. Tanpa animasi, elemen langsung terlihat.
+      // Hormati preferensi pengguna. Tanpa animasi, elemen langsung terlihat
+      // dan tidak ada ScrollTrigger yang dibuat, jadi tidak ada elemen yang
+      // bisa tertinggal dalam keadaan tersembunyi.
       if (prefersReducedMotion) {
-        gsap.set(targets, { clearProps: 'all', autoAlpha: 1, y: 0, opacity: 1 })
+        gsap.set(targets, { clearProps: 'all', autoAlpha: 1, y: 0 })
         targets.forEach((element) => element.classList.add(REVEALED_CLASS))
         return
       }
+
+      const reveal = (batch: Element[]) =>
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          duration: MOTION.duration,
+          ease: EASE,
+          stagger,
+          overwrite: true,
+        })
+
+      const reset = (batch: Element[]) =>
+        gsap.to(batch, {
+          autoAlpha: 0,
+          y: MOTION.distance,
+          duration: MOTION.duration,
+          ease: EASE,
+          stagger,
+          overwrite: true,
+        })
 
       gsap.set(targets, { autoAlpha: 0, y: MOTION.distance })
 
       ScrollTrigger.batch(targets, {
         start: MOTION.start,
-        once,
+        end: 'bottom top',
         interval: 0.1,
         batchMax: 6,
-        onEnter: (batch) =>
-          gsap.to(batch, {
-            autoAlpha: 1,
-            y: 0,
-            duration: MOTION.duration,
-            ease: 'power2.out',
-            stagger,
-          }),
+        onEnter: reveal,
+        onEnterBack: reveal,
+        onLeave: reset,
+        onLeaveBack: reset,
       })
 
       // Kalau halaman dimuat dalam keadaan sudah di tengah (misal reload),
-      // paksa perhitungan ulang setelah font dan layout selesai.
+      // paksa perhitungan ulang setelah font dan layout selesai. Elemen yang
+      // sudah lewat garis start saat itu langsung memicu onEnter.
       const refresh = () => ScrollTrigger.refresh()
       const frame = window.requestAnimationFrame(refresh)
 
@@ -72,8 +98,11 @@ export function useScrollReveal<T extends HTMLElement>(
     },
     {
       scope: container,
-      dependencies: [prefersReducedMotion, stagger, once],
-      revertOnUpdate: replayOnDependencies,
+      dependencies: [prefersReducedMotion, stagger],
+      // Selalu revert saat dependensi berubah. Tanpa ini, ScrollTrigger lama
+      // tetap hidup saat prefers-reduced-motion berubah dan bisa menyembunyikan
+      // elemen kembali, sehingga konten berisiko hilang.
+      revertOnUpdate: true,
     },
   )
 

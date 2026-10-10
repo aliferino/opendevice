@@ -37,7 +37,7 @@ const DEFAULT_FILTERS: CatalogFilters = {
 export function Catalog() {
   useDocumentTitle('Katalog unit iPhone', 'Daftar iPhone yang bisa disewa harian atau mingguan beserta tarifnya.')
   const pageRef = usePageTransition<HTMLDivElement>()
-  const revealRef = useScrollReveal<HTMLDivElement>({ once: true })
+  const revealRef = useScrollReveal<HTMLDivElement>()
 
   const [filters, setFilters] = useState<CatalogFilters>(DEFAULT_FILTERS)
   const families = getFamilies()

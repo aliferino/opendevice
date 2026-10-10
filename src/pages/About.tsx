@@ -54,7 +54,7 @@ const REASON_ICONS: readonly LucideIcon[] = [HeartHandshake, BadgeCheck, FileTex
 export function About() {
   useDocumentTitle('Tentang kami', 'Cerita, prinsip, dan cara kerja OpenDevice dalam menyewakan iPhone.')
   const pageRef = usePageTransition<HTMLDivElement>()
-  const revealRef = useScrollReveal<HTMLDivElement>({ once: true })
+  const revealRef = useScrollReveal<HTMLDivElement>()
 
   return (
     <div ref={pageRef}>

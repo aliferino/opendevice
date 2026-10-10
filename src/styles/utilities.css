@@ -106,3 +106,18 @@
 .is-revealed {
   will-change: auto;
 }
+
+/* Jaring pengaman aksesibilitas.
+
+   Saat pengguna meminta animasi diminimalkan, konten reveal tidak boleh
+   bergantung pada urutan efek JavaScript. Aturan ini memaksa elemen reveal
+   langsung terlihat, apa pun keadaan inline style yang sempat dipasang GSAP.
+   Tanpa ini, ada risiko konten tertinggal dalam keadaan tersembunyi bila
+   preferensi berubah di tengah sesi. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
