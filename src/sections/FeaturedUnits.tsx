@@ -23,7 +23,7 @@ export function FeaturedUnits({ notice }: FeaturedUnitsProps) {
         <SectionHeading
           eyebrow="Unit unggulan"
           title="Paling sering disewa minggu ini"
-          description="Harga di bawah adalah tarif sewa terendah dari setiap unit. Tarif per kapasitas ada di halaman detail."
+          description="Harga di bawah adalah tarif sewa harian dan mingguan untuk setiap unit. Rincian lengkap ada di halaman detail."
         />
         <h2 id="unggulan-title" className="visually-hidden">
           Unit unggulan
