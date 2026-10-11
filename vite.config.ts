@@ -13,6 +13,22 @@ const RESOLVED_ID = '\0' + VIRTUAL_ID
 const FILE_PATTERN = /^(\d+)_basic_(.+)\.webp$/i
 
 /**
+ * Warna gelap yang selalu ditampilkan lebih dulu.
+ *
+ * Tanpa daftar ini, urutan warna mengikuti abjad nama berkas, sehingga
+ * "blue" muncul sebelum "midnight" dan kartu iPhone 13 dan 14 tampil biru.
+ * Padahal generasi lain kebetulan sudah tampil hitam karena "black" paling
+ * depan secara abjad. Daftar ini menyamakan perlakuan untuk semua generasi.
+ */
+const DARK_COLOR_PRIORITY = ['black', 'midnight']
+
+/** Peringkat warna: makin kecil, makin awal ditampilkan. */
+function colorRank(color: string): number {
+  const index = DARK_COLOR_PRIORITY.indexOf(color)
+  return index === -1 ? DARK_COLOR_PRIORITY.length : index
+}
+
+/**
  * Plugin pengindeks gambar warna iPhone.
  *
  * Vite tidak bisa membaca isi folder public saat aplikasi berjalan, jadi plugin
@@ -33,7 +49,6 @@ function iphoneColorsPlugin(): Plugin {
 
     return files
       .filter((file) => FILE_PATTERN.test(file))
-      .sort()
       .map((file) => {
         const match = FILE_PATTERN.exec(file)
         if (match === null) {
@@ -46,6 +61,14 @@ function iphoneColorsPlugin(): Plugin {
         }
       })
       .filter((entry): entry is { generation: string; color: string; url: string } => entry !== null)
+      .sort((a, b) => {
+        // Warna gelap lebih dulu, sisanya mengikuti abjad seperti sebelumnya.
+        const rank = colorRank(a.color) - colorRank(b.color)
+        if (rank !== 0) {
+          return rank
+        }
+        return a.color.localeCompare(b.color)
+      })
   }
 
   return {
