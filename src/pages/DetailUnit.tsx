@@ -1,6 +1,6 @@
 import { Container } from '../components/Container'
 import { PageHeader } from '../components/PageHeader'
-import { ImagePlaceholder } from '../components/ImagePlaceholder'
+import { ColorGallery } from '../components/ColorGallery'
 import { Badge } from '../components/Badge'
 import { Breadcrumbs } from '../components/Breadcrumbs'
 import { ButtonExtLink, ButtonLink } from '../components/Button'
@@ -67,16 +67,7 @@ export function DetailUnit({ slug }: DetailUnitProps) {
           <PageHeader eyebrow={`Seri ${unit.family}, ${unit.releaseYear}`} title={unit.name} description={unit.tagline} />
 
           <div className="detail__grid">
-            <figure className="detail__figure" data-reveal>
-              <ImagePlaceholder
-                label={`Foto ${unit.name}, rasio 4 banding 3`}
-                alt={`Placeholder foto ${unit.name}, ganti dengan foto asli unit`}
-                ratio="4 / 3"
-              />
-              <figcaption className="detail__figure-note">
-                Slot foto utama. Tambahkan dua sampai tiga foto tambahan saat foto asli sudah siap.
-              </figcaption>
-            </figure>
+            <ColorGallery unit={unit} />
 
             <div>
               <div className="detail__tags" data-reveal>
