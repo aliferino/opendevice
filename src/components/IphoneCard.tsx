@@ -30,9 +30,13 @@ export function IphoneCard({ unit }: IphoneCardProps) {
 
       <div className="unit-card__body">
         <div className="unit-card__meta">
-          <span className="note">Seri {unit.family}</span>
-          {unit.popular ? <Badge tone="accent">Paling sering disewa</Badge> : null}
-          <Badge tone={isAvailable ? 'muted' : 'danger'}>{isAvailable ? 'Tersedia' : 'Stok habis'}</Badge>
+          <span className="unit-card__meta-group">
+            <span className="note">Seri {unit.family}</span>
+            {unit.popular ? <Badge tone="accent">Paling sering disewa</Badge> : null}
+          </span>
+          <span className="unit-card__meta-availability">
+            <Badge tone={isAvailable ? 'muted' : 'danger'}>{isAvailable ? 'Tersedia' : 'Stok habis'}</Badge>
+          </span>
         </div>
 
         <h3 className="unit-card__title">
