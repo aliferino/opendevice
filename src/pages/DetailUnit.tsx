@@ -124,7 +124,7 @@ export function DetailUnit({ slug }: DetailUnitProps) {
                 <div className="detail__actions">
                   <ButtonExtLink href={whatsappHref}>Tanya lewat WhatsApp</ButtonExtLink>
                   <ButtonLink to="/katalog" variant="secondary">
-                    Bandingkan unit lain
+                    Lihat unit lain
                   </ButtonLink>
                 </div>
               </div>
