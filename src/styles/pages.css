@@ -84,7 +84,7 @@
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
   overflow: hidden;
-  background-color: var(--c-surface);
+  background-color: var(--c-photo-bg);
 }
 
 .color-gallery__stage:focus-visible {

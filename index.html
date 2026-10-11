@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b0b0c" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)" />
     <title>OpenDevice, sewa iPhone harian dan mingguan</title>
     <meta
       name="description"
@@ -16,6 +17,24 @@
       content="Pilih unit, tentukan durasi, ambil di toko atau minta dikirim. Harga harian dan mingguan tercantum terbuka."
     />
     <meta property="og:type" content="website" />
+    <script>
+      // Pasang tema sebelum React dimuat supaya tidak ada kedipan.
+      // Urutan: pilihan tersimpan, lalu preferensi sistem, lalu terang.
+      (function () {
+        var theme = 'light'
+        try {
+          var stored = window.localStorage.getItem('opendevice-theme')
+          if (stored === 'dark' || stored === 'light') {
+            theme = stored
+          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark'
+          }
+        } catch (error) {
+          theme = 'light'
+        }
+        document.documentElement.setAttribute('data-theme', theme)
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

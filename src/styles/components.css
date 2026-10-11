@@ -55,13 +55,14 @@
 }
 
 /* Gambar unit di kartu katalog. object-fit contain supaya produk tidak
-   terpotong, dengan latar putih supaya menyatu dengan foto Apple. */
+   terpotong. Latar memakai token foto supaya menyatu dengan latar putih
+   foto Apple di kedua tema. */
 .unit-photo {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
-  background-color: var(--c-surface);
+  background-color: var(--c-photo-bg);
 }
 
 .unit-card__body {
@@ -152,7 +153,7 @@
 }
 
 .image-placeholder--dark {
-  background-color: var(--c-ink);
+  background-color: var(--c-invert-surface);
   border-bottom-color: transparent;
 }
 
@@ -167,7 +168,7 @@
 }
 
 .image-placeholder--dark .image-placeholder__frame {
-  border-color: rgba(255, 255, 255, 0.35);
+  border-color: var(--c-invert-line);
 }
 
 .image-placeholder__label {
@@ -180,7 +181,7 @@
 }
 
 .image-placeholder--dark .image-placeholder__label {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--c-invert-muted);
 }
 
 /* Jejak navigasi */

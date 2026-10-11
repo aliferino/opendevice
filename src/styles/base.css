@@ -84,15 +84,16 @@ button {
   color: var(--c-on-accent);
 }
 
-/* Target lompat konten, tersembunyi sampai difokus keyboard. */
+/* Target lompat konten, tersembunyi sampai difokus keyboard. Memakai blok
+   terbalik supaya tetap kontras di kedua tema. */
 .skip-link {
   position: absolute;
   top: var(--space-3);
   left: var(--space-3);
   z-index: 100;
   padding: var(--space-2) var(--space-4);
-  background-color: var(--c-ink);
-  color: var(--c-canvas);
+  background-color: var(--c-invert-surface);
+  color: var(--c-invert-ink);
   border-radius: var(--radius-sm);
   transform: translateY(-200%);
   transition: transform var(--transition-fast);
@@ -126,5 +127,15 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Transisi lembut saat tema berganti, supaya perpindahan tidak terasa
+   seperti kedipan. Dilewati bila pengguna meminta animasi diminimalkan. */
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition:
+      background-color var(--transition-base),
+      color var(--transition-base);
   }
 }

@@ -3,18 +3,29 @@
  *
  * Palet sengaja dibatasi: hitam, putih, dan beberapa tingkat abu.
  * Satu warna aksen saja, dipakai hemat untuk penanda dan tautan.
+ *
+ * Tema:
+ * - Tema terang adalah bawaan dan didefinisikan di :root.
+ * - Tema gelap didefinisikan di [data-theme='dark'] pada elemen html.
+ * - Atribut data-theme dipasang skrip kecil di index.html sebelum React
+ *   dimuat, supaya tidak ada kedipan tema. Skrip itu memakai pilihan
+ *   tersimpan di localStorage, atau prefers-color-scheme bila pengguna
+ *   belum pernah memilih sendiri.
+ *
+ * Karena itu media query prefers-color-scheme tidak dipakai di sini. Semua
+ * keputusan tema terjadi di skrip tersebut, sehingga bawaannya selalu terang.
  */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* Netral */
   --c-ink: #0b0b0d;
   --c-ink-soft: #1d1d20;
   --c-muted: #5b5c63;
   --c-muted-strong: #3f4046;
-  --c-line: #e2e2e5;
-  --c-line-strong: #c9c9ce;
+  --c-line: #e3e3e6;
+  --c-line-strong: #8a8a90;
   --c-surface: #ffffff;
   --c-canvas: #ffffff;
   --c-subtle: #f6f6f7;
@@ -28,6 +39,18 @@
   /* Status */
   --c-danger: #a3231f;
   --c-danger-soft: #fbeceb;
+
+  /* Blok terbalik, misalnya banner ajakan dan tautan lompat konten.
+     Di tema terang blok ini gelap, di tema gelap blok ini terang. */
+  --c-invert-surface: #0b0b0d;
+  --c-invert-ink: #ffffff;
+  --c-invert-muted: #b4b4bc;
+  --c-invert-line: rgba(255, 255, 255, 0.35);
+
+  /* Latar wadah foto produk. Foto Apple berlatar putih murni, jadi wadahnya
+     dibuat putih di kedua tema. Kalau wadahnya diberi abu di tema gelap,
+     akan terlihat garis sambungan antara tepi foto dan wadahnya. */
+  --c-photo-bg: #ffffff;
 
   /* Tipografi */
   --font-sans: 'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -79,33 +102,42 @@
   --transition-base: 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+/* Tema gelap, dipilih lewat tombol pengubah tema atau preferensi sistem. */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --c-ink: #f5f5f7;
+  --c-ink-soft: #e4e4e7;
+  --c-muted: #a0a1a8;
+  --c-muted-strong: #c3c4ca;
+  --c-line: #2a2a2e;
+  --c-line-strong: #65656e;
+  --c-surface: #131316;
+  --c-canvas: #0b0b0d;
+  --c-subtle: #17171a;
+
+  --c-accent: #5fd3b8;
+  --c-accent-strong: #8ce3cd;
+  --c-accent-soft: #12241f;
+  --c-on-accent: #062a22;
+
+  --c-danger: #f08a85;
+  --c-danger-soft: #261413;
+
+  --c-invert-surface: #f5f5f7;
+  --c-invert-ink: #0b0b0d;
+  --c-invert-muted: #5b5c63;
+  --c-invert-line: rgba(11, 11, 13, 0.3);
+
+  /* Tetap putih di tema gelap, mengikuti latar asli foto produk Apple. */
+  --c-photo-bg: #ffffff;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 14px 36px -20px rgba(0, 0, 0, 0.7);
+}
+
 @media (min-width: 768px) {
   :root {
     --page-top: 5rem;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --c-ink: #f5f5f7;
-    --c-ink-soft: #e4e4e7;
-    --c-muted: #a0a1a8;
-    --c-muted-strong: #c3c4ca;
-    --c-line: #2a2a2e;
-    --c-line-strong: #3d3d43;
-    --c-surface: #131316;
-    --c-canvas: #0b0b0d;
-    --c-subtle: #17171a;
-
-    --c-accent: #5fd3b8;
-    --c-accent-strong: #8ce3cd;
-    --c-accent-soft: #12241f;
-    --c-on-accent: #062a22;
-
-    --c-danger: #f08a85;
-    --c-danger-soft: #261413;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 14px 36px -20px rgba(0, 0, 0, 0.7);
   }
 }

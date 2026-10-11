@@ -64,6 +64,38 @@
   display: none;
 }
 
+/* Tema hanya tampil di navbar desktop. Di layar kecil, tombolnya berdiri
+   sendiri di sebelah tombol menu supaya tetap terjangkau. */
+.site-header__theme-mobile {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-line-strong);
+  color: var(--c-muted-strong);
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  border-color: var(--c-muted);
+  color: var(--c-ink);
+}
+
+.theme-toggle:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
 .site-header__toggle {
   display: inline-flex;
   align-items: center;
@@ -104,9 +136,12 @@
 @media (min-width: 900px) {
   .site-header__nav,
   .site-header__action {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 
+  .site-header__theme-mobile,
   .site-header__toggle,
   .site-header__panel {
     display: none;

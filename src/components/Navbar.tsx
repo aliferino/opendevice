@@ -5,6 +5,7 @@ import { NAV_ITEMS, SITE } from '../lib/constants'
 import { useRefreshOnUpdate } from '../hooks/useScrollRefresh'
 import { Container } from './Container'
 import { Icon } from './Icon'
+import { ThemeToggle } from './ThemeToggle'
 
 /**
  * Navbar minimalis dengan panel menu untuk layar kecil.
@@ -63,9 +64,14 @@ export function Navbar() {
         </nav>
 
         <div className="site-header__action">
+          <ThemeToggle />
           <Link to="/katalog" className="button button--primary button--small">
             Lihat katalog
           </Link>
+        </div>
+
+        <div className="site-header__theme-mobile">
+          <ThemeToggle />
         </div>
 
         <button

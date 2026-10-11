@@ -55,7 +55,7 @@
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
   overflow: hidden;
-  background-color: var(--c-surface);
+  background-color: var(--c-photo-bg);
 }
 
 @media (min-width: 1024px) {
@@ -172,9 +172,12 @@
 
 /* Banner CTA */
 
+/* Banner CTA memakai blok terbalik: gelap di tema terang, terang di tema
+   gelap. Token invert dipakai supaya kontras teks tetap terjaga di kedua
+   tema, bukan sekadar membalik warna. */
 .cta-banner {
-  background-color: var(--c-ink);
-  color: var(--c-canvas);
+  background-color: var(--c-invert-surface);
+  color: var(--c-invert-ink);
   border-radius: var(--radius-lg);
   padding: clamp(2rem, 5vw, 3.5rem);
   display: grid;
@@ -187,7 +190,7 @@
 }
 
 .cta-banner__text {
-  color: var(--c-muted);
+  color: var(--c-invert-muted);
   max-width: 52ch;
 }
 
@@ -198,17 +201,17 @@
 }
 
 .cta-banner .button--primary {
-  background-color: var(--c-canvas);
-  color: var(--c-ink);
+  background-color: var(--c-invert-ink);
+  color: var(--c-invert-surface);
 }
 
 .cta-banner .button--secondary {
-  color: var(--c-canvas);
-  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--c-invert-ink);
+  border-color: var(--c-invert-line);
 }
 
 .cta-banner .button--secondary:hover {
-  border-color: var(--c-canvas);
+  border-color: var(--c-invert-ink);
 }
 
 @media (min-width: 900px) {
