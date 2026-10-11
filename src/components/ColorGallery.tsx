@@ -1,6 +1,4 @@
 import { useCallback, useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Icon } from './Icon'
 import { ImagePlaceholder } from './ImagePlaceholder'
 import { getColorsForFamily } from '../lib/colors'
 import { gsap, MOTION, useGSAP } from '../lib/motion'
@@ -110,13 +108,13 @@ export function ColorGallery({ unit }: ColorGalleryProps) {
 
   if (count === 0 || activeColor === undefined) {
     return (
-      <figure className="detail__figure" data-reveal>
+      <figure className="color-gallery" data-reveal>
         <ImagePlaceholder
-          label={`Foto ${unit.name}, rasio 4 banding 3`}
+          label={`Foto ${unit.name}, rasio 1 banding 1`}
           alt={`Foto ${unit.name} belum tersedia`}
-          ratio="4 / 3"
+          ratio="1 / 1"
         />
-        <figcaption className="detail__figure-note">
+        <figcaption className="color-gallery__note">
           Foto unit belum tersedia. Hubungi kami lewat WhatsApp bila ingin melihat kondisi unit langsung.
         </figcaption>
       </figure>
@@ -143,33 +141,12 @@ export function ColorGallery({ unit }: ColorGalleryProps) {
             className={`color-gallery__image${colorIndex === index ? ' is-active' : ''}`}
             src={color.url}
             alt={`${unit.name} warna ${color.label}`}
-            width={1200}
-            height={900}
+            width={1400}
+            height={1400}
             loading={colorIndex === index ? 'eager' : 'lazy'}
             decoding="async"
           />
         ))}
-
-        {count > 1 ? (
-          <>
-            <button
-              type="button"
-              className="color-gallery__arrow color-gallery__arrow--prev"
-              onClick={goPrevious}
-              aria-label="Warna sebelumnya"
-            >
-              <Icon icon={ChevronLeft} size="sm" />
-            </button>
-            <button
-              type="button"
-              className="color-gallery__arrow color-gallery__arrow--next"
-              onClick={goNext}
-              aria-label="Warna berikutnya"
-            >
-              <Icon icon={ChevronRight} size="sm" />
-            </button>
-          </>
-        ) : null}
       </div>
 
       <p className="color-gallery__label" aria-live="polite">

@@ -80,7 +80,7 @@
 
 .color-gallery__stage {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -93,7 +93,9 @@
 }
 
 /* Semua gambar bertumpuk di area yang sama. Hanya yang aktif yang terlihat,
-   jadi tidak ada gambar yang menggeser tata letak saat warna diganti. */
+   jadi tidak ada gambar yang menggeser tata letak saat warna diganti.
+   Gambar Apple berbentuk persegi, jadi contain membuatnya pas di frame 1:1
+   tanpa terpotong maupun gepeng. */
 .color-gallery__image {
   position: absolute;
   inset: 0;
@@ -107,35 +109,6 @@
 .color-gallery__image.is-active {
   visibility: visible;
   opacity: 1;
-}
-
-.color-gallery__arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--c-line-strong);
-  background-color: var(--c-surface);
-  color: var(--c-ink);
-  box-shadow: var(--shadow-sm);
-}
-
-.color-gallery__arrow:hover {
-  border-color: var(--c-accent);
-  color: var(--c-accent);
-}
-
-.color-gallery__arrow--prev {
-  left: var(--space-3);
-}
-
-.color-gallery__arrow--next {
-  right: var(--space-3);
 }
 
 .color-gallery__label {
