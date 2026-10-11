@@ -38,3 +38,12 @@ export function getColorsForFamily(family: IphoneFamily): readonly IphoneColor[]
 export function hasColors(family: IphoneFamily): boolean {
   return IPHONE_COLORS.some((entry) => entry.generation === family)
 }
+
+/**
+ * Warna pertama dari satu generasi, dipakai sebagai gambar utama di kartu
+ * katalog dan hero. Mengembalikan undefined bila belum ada gambarnya, supaya
+ * pemanggil bisa jatuh ke placeholder.
+ */
+export function getPrimaryColor(family: IphoneFamily): IphoneColor | undefined {
+  return getColorsForFamily(family)[0]
+}

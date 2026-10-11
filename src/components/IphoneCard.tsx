@@ -3,7 +3,7 @@ import type { IphoneUnit } from '../lib/types'
 import { formatRupiah, formatRupiahShort } from '../lib/format'
 import { getDailyPrice, getWeeklyPrice } from '../data/iphone'
 import { Badge } from './Badge'
-import { ImagePlaceholder } from './ImagePlaceholder'
+import { UnitPhoto } from './UnitPhoto'
 
 export interface IphoneCardProps {
   readonly unit: IphoneUnit
@@ -25,7 +25,7 @@ export function IphoneCard({ unit }: IphoneCardProps) {
   return (
     <article className="unit-card">
       <Link to={`/katalog/${unit.slug}`} className="unit-card__media-link" tabIndex={-1} aria-hidden="true">
-        <ImagePlaceholder label={unit.name} ratio="4 / 3" />
+        <UnitPhoto name={unit.name} family={unit.family} ratio="4 / 3" loading="lazy" />
       </Link>
 
       <div className="unit-card__body">

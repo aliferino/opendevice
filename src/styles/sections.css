@@ -58,16 +58,6 @@
   background-color: var(--c-surface);
 }
 
-.hero__figure-caption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
-  font-size: var(--step--1);
-  color: var(--c-muted);
-}
-
 @media (min-width: 1024px) {
   .hero__inner {
     grid-template-columns: 1.05fr 0.95fr;

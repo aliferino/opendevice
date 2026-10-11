@@ -54,6 +54,16 @@
   display: block;
 }
 
+/* Gambar unit di kartu katalog. object-fit contain supaya produk tidak
+   terpotong, dengan latar putih supaya menyatu dengan foto Apple. */
+.unit-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: var(--c-surface);
+}
+
 .unit-card__body {
   display: flex;
   flex-direction: column;

@@ -18,8 +18,6 @@ export const MOTION = {
   stagger: 0.08,
   /** Jeda antar elemen pada animasi masuk hero. */
   heroStagger: 0.12,
-  /** Keterangan kecil yang dipakai sebagai teks bantuan di caption gambar. */
-  revealDelayNote: 'ganti dengan foto asli',
   /** Jarak geser awal dalam piksel. */
   distance: 24,
   /** Titik mulai animasi saat elemen masuk viewport. */

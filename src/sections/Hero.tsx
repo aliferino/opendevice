@@ -1,7 +1,6 @@
 import { Container } from '../components/Container'
 import { ButtonLink } from '../components/Button'
-import { ImagePlaceholder } from '../components/ImagePlaceholder'
-import { MOTION } from '../lib/motion'
+import { UnitPhoto } from '../components/UnitPhoto'
 import { SITE } from '../lib/constants'
 
 const FACTS: readonly { readonly value: string; readonly label: string }[] = [
@@ -52,15 +51,7 @@ export function Hero() {
         </div>
 
         <figure className="hero__figure" data-reveal>
-          <ImagePlaceholder
-            label="Foto unit hero, rasio 4 banding 3"
-            alt="Placeholder foto unit iPhone unggulan OpenDevice, siap diganti foto asli"
-            ratio="4 / 3"
-          />
-          <figcaption className="hero__figure-caption">
-            <span>Slot foto utama</span>
-            <span>{MOTION.revealDelayNote}</span>
-          </figcaption>
+          <UnitPhoto name="iPhone 17" family="17" ratio="4 / 3" loading="eager" />
         </figure>
       </Container>
     </section>
