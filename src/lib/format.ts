@@ -24,11 +24,6 @@ export function formatRupiahShort(value: number): string {
   return formatRupiah(value)
 }
 
-/** 128 menjadi "128 GB". */
-export function formatStorage(storage: number): string {
-  return `${storage} GB`
-}
-
 /** 2019 menjadi "sejak 2019". */
 export function formatYear(year: number): string {
   return `sejak ${year}`

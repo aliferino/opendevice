@@ -8,8 +8,8 @@ import { DataNotice } from '../components/DataNotice'
 import { IphoneCard } from '../components/IphoneCard'
 import { Icon } from '../components/Icon'
 import { Check } from 'lucide-react'
-import { getRelatedUnits, getUnitBySlug } from '../data/iphone'
-import { formatRupiah, formatStorage } from '../lib/format'
+import { getDailyPrice, getRelatedUnits, getUnitBySlug, getWeeklyPrice } from '../data/iphone'
+import { formatRupiah } from '../lib/format'
 import { SITE } from '../lib/constants'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { usePageTransition } from '../hooks/usePageTransition'
@@ -84,36 +84,23 @@ export function DetailUnit({ slug }: DetailUnitProps) {
                 <Badge tone={unit.stock > 0 ? 'muted' : 'danger'}>
                   {unit.stock > 0 ? `${unit.stock} unit tersedia` : 'Stok habis'}
                 </Badge>
-                <Badge tone="muted">{unit.variants.length} pilihan kapasitas</Badge>
               </div>
 
               <div className="detail__section" data-reveal>
                 <h2 className="detail__section-title">Harga sewa</h2>
-                <div className="table-scroll">
-                  <table className="price-table">
-                  <caption>
-                    Tarif sewa {unit.name} per kapasitas. Harga mingguan berlaku untuk 7 hari kalender.
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Kapasitas</th>
-                      <th scope="col">Per hari</th>
-                      <th scope="col">Per minggu</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {unit.variants.map((variant) => (
-                      <tr key={variant.storage}>
-                        <th scope="row">{formatStorage(variant.storage)}</th>
-                        <td className="price-table__value">{formatRupiah(variant.price.perDay)}</td>
-                        <td className="price-table__value">{formatRupiah(variant.price.perWeek)}</td>
-                        <td className="price-table__note">{variant.available ? 'Tersedia' : 'Kosong'}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                  </table>
-                </div>
+                <dl className="detail__price">
+                  <div className="detail__price-item">
+                    <dt className="detail__price-label">Per hari</dt>
+                    <dd className="detail__price-value">{formatRupiah(getDailyPrice(unit))}</dd>
+                  </div>
+                  <div className="detail__price-item">
+                    <dt className="detail__price-label">Per minggu</dt>
+                    <dd className="detail__price-value">{formatRupiah(getWeeklyPrice(unit))}</dd>
+                  </div>
+                </dl>
+                <p className="detail__price-note">
+                  Harga mingguan berlaku untuk 7 hari kalender dan lebih hemat dibanding tarif harian.
+                </p>
               </div>
 
               <div className="detail__section" data-reveal>
@@ -131,8 +118,8 @@ export function DetailUnit({ slug }: DetailUnitProps) {
               <div className="detail__section" data-reveal>
                 <h2 className="detail__section-title">Ajukan sewa</h2>
                 <p className="detail__paragraph">
-                  Sebutkan kapasitas, tanggal mulai, dan tanggal selesai. Kami cek stok terlebih dahulu, lalu kirim
-                  rincian biaya dan instruksi verifikasi data.
+                  Sebutkan model, tanggal mulai, dan tanggal selesai. Kami cek ketersediaan terlebih dahulu, lalu
+                  kirim rincian biaya dan instruksi verifikasi data.
                 </p>
                 <div className="detail__actions">
                   <ButtonExtLink href={whatsappHref}>Tanya lewat WhatsApp</ButtonExtLink>

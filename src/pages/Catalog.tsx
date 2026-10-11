@@ -5,8 +5,7 @@ import { IphoneCard } from '../components/IphoneCard'
 import { DataNotice } from '../components/DataNotice'
 import { ButtonLink, ButtonAction } from '../components/Button'
 import { Icon } from '../components/Icon'
-import { filterUnits, getAvailableStorages, getFamilies, getAllUnits } from '../data/iphone'
-import { formatStorage } from '../lib/format'
+import { filterUnits, getFamilies, getAllUnits } from '../data/iphone'
 import type { CatalogFilters, SortKey } from '../lib/types'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { usePageTransition } from '../hooks/usePageTransition'
@@ -22,7 +21,6 @@ const SORT_LABELS: readonly { readonly value: SortKey; readonly label: string }[
 
 const DEFAULT_FILTERS: CatalogFilters = {
   family: 'all',
-  storage: 'all',
   keyword: '',
   sort: 'newest',
 }
@@ -41,13 +39,12 @@ export function Catalog() {
 
   const [filters, setFilters] = useState<CatalogFilters>(DEFAULT_FILTERS)
   const families = getFamilies()
-  const storages = getAvailableStorages()
   const units = filterUnits(getAllUnits(), filters)
   const isFiltered =
-    filters.family !== 'all' || filters.storage !== 'all' || filters.keyword.trim().length > 0 || filters.sort !== 'newest'
+    filters.family !== 'all' || filters.keyword.trim().length > 0 || filters.sort !== 'newest'
 
   // Daftar berubah, jadi posisi ScrollTrigger perlu dihitung ulang.
-  useRefreshOnUpdate(`${units.length}-${filters.family}-${filters.storage}-${filters.sort}-${filters.keyword}`)
+  useRefreshOnUpdate(`${units.length}-${filters.family}-${filters.sort}-${filters.keyword}`)
 
   return (
     <div ref={pageRef}>
@@ -55,7 +52,7 @@ export function Catalog() {
         <PageHeader
           eyebrow="Katalog"
           title="Unit iPhone yang bisa disewa"
-          description="Pilih seri dan kapasitas yang sesuai kebutuhan. Semua unit sudah melewati pemeriksaan fungsi dan kebersihan sebelum diserahkan."
+          description="Pilih seri yang sesuai kebutuhan. Semua unit sudah melewati pemeriksaan fungsi dan kebersihan sebelum diserahkan."
         />
 
         <div className="catalog__toolbar" role="search">
@@ -89,28 +86,6 @@ export function Catalog() {
                 {families.map((family) => (
                   <option key={family} value={family}>
                     Seri {family}
-                  </option>
-                ))}
-              </select>
-              <Icon icon={ChevronDown} size="sm" className="select-wrap__icon" />
-            </span>
-          </div>
-
-          <div className="catalog__field">
-            <label className="label" htmlFor="catalog-storage">
-              Kapasitas
-            </label>
-            <span className="select-wrap">
-              <select
-                id="catalog-storage"
-                className="select"
-                value={filters.storage}
-                onChange={(event) => setFilters({ ...filters, storage: event.target.value })}
-              >
-                <option value="all">Semua kapasitas</option>
-                {storages.map((storage) => (
-                  <option key={storage} value={storage}>
-                    {formatStorage(storage)}
                   </option>
                 ))}
               </select>

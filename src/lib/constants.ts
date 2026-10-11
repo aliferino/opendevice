@@ -30,7 +30,7 @@ export const RENTAL_STEPS: readonly { readonly step: number; readonly title: str
   {
     step: 1,
     title: 'Pilih unit',
-    body: 'Buka katalog, bandingkan seri dan kapasitas, lalu tentukan durasi sewa yang paling pas.',
+    body: 'Buka katalog, pilih seri yang sesuai kebutuhan, lalu tentukan durasi sewa yang paling pas.',
   },
   {
     step: 2,

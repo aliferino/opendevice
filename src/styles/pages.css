@@ -52,7 +52,7 @@
 
 @media (min-width: 768px) {
   .catalog__toolbar {
-    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
     align-items: end;
   }
 }
@@ -143,54 +143,33 @@
   color: var(--c-accent);
 }
 
-/* Tabel harga sewa */
-
-/* Pembungkus tabel agar bisa digulir horizontal di layar sempit tanpa membuat
-   seluruh halaman meluber. */
-.table-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+/* Harga sewa tunggal per unit. Kapasitas tidak lagi ditampilkan, jadi cukup
+   dua angka: harian dan mingguan. */
+.detail__price {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  background-color: var(--c-surface);
 }
 
-.price-table {
-  width: 100%;
-  min-width: 32rem;
-  border-collapse: collapse;
-  font-size: var(--step--1);
-}
-
-.price-table caption {
-  text-align: left;
+.detail__price-label {
   font-size: var(--step--1);
   color: var(--c-muted);
-  padding-bottom: var(--space-3);
 }
 
-.price-table th,
-.price-table td {
-  padding: var(--space-3) var(--space-2);
-  text-align: left;
-  border-bottom: 1px solid var(--c-line);
+.detail__price-value {
+  margin-top: var(--space-1);
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
 }
 
-.price-table thead th {
+.detail__price-note {
+  margin-top: var(--space-3);
   font-size: var(--step--1);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--c-muted);
-  font-weight: 600;
-}
-
-.price-table tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-.price-table__value {
-  font-weight: 600;
-  color: var(--c-ink);
-}
-
-.price-table__note {
   color: var(--c-muted);
 }
 
