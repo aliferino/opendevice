@@ -9,7 +9,7 @@ export const SITE = {
   name: 'OpenDevice',
   tagline: 'Sewa iPhone tanpa ribet',
   description:
-    'OpenDevice menyewakan iPhone harian dan mingguan untuk kebutuhan kerja, konten, dan perjalanan. Unit siap pakai, proses cepat, tanpa biaya tersembunyi.',
+    'OpenDevice menyewakan iPhone dengan paket 1 sampai 7 hari untuk kebutuhan kerja, konten, dan perjalanan. Unit siap pakai, proses cepat, tanpa biaya tersembunyi.',
   city: 'Jakarta Selatan',
   address: 'Jl. Contoh Raya No. 12, Kebayoran Baru, Jakarta Selatan 12110',
   hours: 'Setiap hari, 08.00 sampai 21.00 WIB',
@@ -40,7 +40,7 @@ export const RENTAL_STEPS: readonly { readonly step: number; readonly title: str
   {
     step: 3,
     title: 'Verifikasi data',
-    body: 'Kirim foto KTP dan satu identitas pendukung. Untuk sewa mingguan kami juga meminta bukti domisili.',
+    body: 'Kirim foto KTP dan satu identitas pendukung. Untuk paket 5 hari ke atas kami juga meminta bukti domisili.',
   },
   {
     step: 4,
@@ -56,7 +56,7 @@ export const WHY_US: readonly { readonly title: string; readonly body: string }[
   },
   {
     title: 'Harga jelas sejak awal',
-    body: 'Tarif harian dan mingguan tercantum terbuka. Tidak ada biaya administrasi mendadak saat pengambilan.',
+    body: 'Tarif setiap paket durasi tercantum terbuka. Tidak ada biaya administrasi mendadak saat pengambilan.',
   },
   {
     title: 'Tanpa pemblokiran akun',
@@ -81,9 +81,9 @@ export const TERMS_SECTIONS: readonly { readonly title: string; readonly items: 
     title: 'Pembayaran',
     items: [
       'Sewa dibayar penuh di muka sebelum unit diserahkan.',
-      'Tarif harian dihitung per 24 jam sejak waktu serah terima unit.',
-      'Tarif mingguan dihitung per 7 hari kalender dan lebih hemat dibanding tarif harian.',
-      'Keterlambatan pengembalian dikenakan tarif harian ditambah 20 persen per hari.',
+      'Paket 1 hari dihitung per 24 jam sejak waktu serah terima unit.',
+      'Paket 7 hari dihitung per 7 hari kalender, dan tarif per harinya lebih hemat dibanding paket 1 hari.',
+      'Keterlambatan pengembalian dikenakan tarif satu hari ditambah 20 persen per hari keterlambatan.',
     ],
   },
   {
@@ -91,7 +91,7 @@ export const TERMS_SECTIONS: readonly { readonly title: string; readonly items: 
     items: [
       'Deposit dikembalikan penuh setelah unit diperiksa dan dinyatakan sesuai kondisi awal.',
       'Deposit dapat ditahan sebagian atau seluruhnya bila ditemukan kerusakan, kehilangan aksesori, atau tunggakan biaya.',
-      'Untuk sewa mingguan, kami meminta satu identitas tambahan sebagai jaminan.',
+      'Untuk paket 5 hari ke atas, kami meminta satu identitas tambahan sebagai jaminan.',
     ],
   },
   {

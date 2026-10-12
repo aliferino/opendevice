@@ -32,7 +32,7 @@ const DEFAULT_FILTERS: CatalogFilters = {
  * hanya satu perhitungan ringan untuk 7 unit.
  */
 export function Catalog() {
-  useDocumentTitle('Katalog unit iPhone', 'Daftar iPhone yang bisa disewa harian atau mingguan beserta tarifnya.')
+  useDocumentTitle('Katalog unit iPhone', 'Daftar iPhone yang bisa disewa dengan paket 1 sampai 7 hari beserta tarifnya.')
   const pageRef = usePageTransition<HTMLDivElement>()
   const revealRef = useScrollReveal<HTMLDivElement>()
 

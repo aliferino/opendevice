@@ -6,13 +6,13 @@ import { Icon } from '../components/Icon'
 
 const SERVICES: readonly { readonly title: string; readonly body: string; readonly icon: LucideIcon }[] = [
   {
-    title: 'Sewa harian',
-    body: 'Untuk kebutuhan singkat seperti presentasi, acara, atau pengganti sementara saat ponsel utama Anda diservis.',
+    title: 'Sewa jangka pendek',
+    body: 'Paket 1 dan 3 hari untuk kebutuhan singkat seperti presentasi, acara, atau pengganti sementara saat ponsel utama Anda diservis.',
     icon: CalendarDays,
   },
   {
-    title: 'Sewa mingguan',
-    body: 'Tarif lebih hemat untuk pemakaian berkelanjutan seperti produksi konten, perjalanan kerja, atau riset lapangan.',
+    title: 'Sewa jangka panjang',
+    body: 'Paket 5 dan 7 hari dengan tarif per hari lebih hemat, untuk produksi konten, perjalanan kerja, atau riset lapangan.',
     icon: CalendarRange,
   },
   {

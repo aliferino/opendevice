@@ -23,7 +23,7 @@ import { usePrefersReducedMotion } from '../hooks/useReducedMotion'
  * animasi hero berjalan dari 0 ke 0 dan hero tidak pernah tampil.
  */
 export function Home() {
-  useDocumentTitle('Sewa iPhone harian dan mingguan')
+  useDocumentTitle('Sewa iPhone paket 1 sampai 7 hari')
   const pageRef = usePageTransition<HTMLDivElement>()
   const prefersReducedMotion = usePrefersReducedMotion()
 

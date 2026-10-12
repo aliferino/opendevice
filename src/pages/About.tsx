@@ -81,7 +81,7 @@ export function About() {
                 atau karena perangkat yang ternyata tidak sesuai deskripsi.
               </p>
               <p>
-                Karena itu kami membalik urutannya. Kami tulis tarif harian dan mingguan secara terbuka, kami catat
+                Karena itu kami membalik urutannya. Kami tulis tarif tiap paket durasi secara terbuka, kami catat
                 kondisi unit bersama penyewa pada berita acara, dan kami tidak mengunci perangkat dengan akun toko.
                 Anda memakai Apple ID sendiri, seperti memakai perangkat milik sendiri.
               </p>

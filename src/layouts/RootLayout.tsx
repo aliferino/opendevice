@@ -21,7 +21,7 @@ export function RootLayout() {
       </main>
       <Footer />
       <Container>
-        <p className="visually-hidden">OpenDevice, penyewaan iPhone harian dan mingguan.</p>
+        <p className="visually-hidden">OpenDevice, penyewaan iPhone dengan paket 1 sampai 7 hari.</p>
       </Container>
     </>
   )
