@@ -38,6 +38,7 @@
 .unit-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   background-color: var(--c-surface);
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
@@ -70,6 +71,9 @@
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-5);
+  /* Isi kartu mengisi sisa tinggi, dan bagian harga didorong ke bawah supaya
+     sejajar antar kartu dalam satu baris. */
+  flex: 1;
 }
 
 .unit-card__meta {
@@ -112,12 +116,24 @@
   text-underline-offset: 4px;
 }
 
+/* Tagline dibatasi maksimal 2 baris supaya tinggi kartu seragam.
+   min-height 2lh membuat kartu dengan tagline 1 baris tetap setinggi kartu
+   dengan tagline 2 baris. Satuan lh dipakai supaya tingginya ikut ukuran
+   font, bukan angka piksel kaku yang bisa meleset di layar lain. */
 .unit-card__tagline {
   color: var(--c-muted);
   font-size: var(--step--1);
+  line-height: var(--leading-body);
+  min-height: 2lh;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .unit-card__price {
+  margin-top: auto;
   padding-top: var(--space-3);
   border-top: 1px solid var(--c-line);
 }
@@ -128,30 +144,34 @@
   margin-bottom: var(--space-2);
 }
 
-/* Daftar paket durasi. Dua kolom supaya empat paket tersusun rapi tanpa
-   membuat kartu terlalu tinggi. */
+/* Daftar paket durasi. Satu kolom dengan label di kiri dan harga di kanan.
+   Lebar kartu selalu cukup untuk satu baris per paket, jadi harga panjang
+   seperti Rp 1.600.000 tidak pernah membungkus ke baris kedua. Itu yang
+   membuat tinggi kartu seragam di semua lebar layar. */
 .unit-card__packages {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2) var(--space-3);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
 }
 
 .unit-card__package {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .unit-card__package dt {
   font-size: var(--step--1);
   color: var(--c-muted);
+  white-space: nowrap;
 }
 
 .unit-card__package dd {
   font-size: var(--step-0);
   font-weight: 600;
   letter-spacing: var(--tracking-tight);
+  white-space: nowrap;
 }
 
 /* Placeholder gambar */
