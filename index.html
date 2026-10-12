@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" />
     <title>OpenDevice, sewa iPhone harian dan mingguan</title>
     <meta
       name="description"
@@ -19,20 +18,25 @@
     <meta property="og:type" content="website" />
     <script>
       // Pasang tema sebelum React dimuat supaya tidak ada kedipan.
-      // Urutan: pilihan tersimpan, lalu preferensi sistem, lalu terang.
+      // Bawaan SELALU terang. Preferensi sistem sengaja tidak dibaca, karena
+      // pemilik project ingin website selalu terbuka dalam mode terang.
+      // Tema gelap hanya berlaku bila pengguna sudah memilihnya sendiri,
+      // dan pilihan itu tersimpan di localStorage.
       (function () {
         var theme = 'light'
         try {
           var stored = window.localStorage.getItem('opendevice-theme')
-          if (stored === 'dark' || stored === 'light') {
-            theme = stored
-          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          if (stored === 'dark') {
             theme = 'dark'
           }
         } catch (error) {
           theme = 'light'
         }
         document.documentElement.setAttribute('data-theme', theme)
+        var meta = document.querySelector('meta[name="theme-color"]')
+        if (meta !== null) {
+          meta.setAttribute('content', theme === 'dark' ? '#0b0b0d' : '#ffffff')
+        }
       })()
     </script>
   </head>

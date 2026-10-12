@@ -8,12 +8,12 @@
  * - Tema terang adalah bawaan dan didefinisikan di :root.
  * - Tema gelap didefinisikan di [data-theme='dark'] pada elemen html.
  * - Atribut data-theme dipasang skrip kecil di index.html sebelum React
- *   dimuat, supaya tidak ada kedipan tema. Skrip itu memakai pilihan
- *   tersimpan di localStorage, atau prefers-color-scheme bila pengguna
- *   belum pernah memilih sendiri.
+ *   dimuat, supaya tidak ada kedipan tema. Skrip itu HANYA membaca pilihan
+ *   tersimpan di localStorage. Bawaannya selalu terang.
  *
- * Karena itu media query prefers-color-scheme tidak dipakai di sini. Semua
- * keputusan tema terjadi di skrip tersebut, sehingga bawaannya selalu terang.
+ * Karena itu media query prefers-color-scheme tidak dipakai di sini, dan
+ * juga tidak dipakai di skrip index.html. Tema tidak pernah mengikuti
+ * pengaturan sistem operasi, hanya pilihan pengguna lewat tombol tema.
  */
 
 :root {

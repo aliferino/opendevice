@@ -5,12 +5,26 @@ export type Theme = 'light' | 'dark'
 /** Kunci penyimpanan pilihan tema pengguna. */
 export const THEME_STORAGE_KEY = 'opendevice-theme'
 
+/** Warna bilah alamat browser untuk tiap tema. */
+const THEME_COLOR: Record<Theme, string> = {
+  light: '#ffffff',
+  dark: '#0b0b0d',
+}
+
 /** Nilai tema saat ini, dibaca dari atribut data-theme pada elemen html. */
 function readThemeFromDocument(): Theme {
   if (typeof document === 'undefined') {
     return 'light'
   }
   return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+}
+
+/** Selaraskan warna bilah alamat browser dengan tema yang sedang aktif. */
+function applyThemeColor(theme: Theme): void {
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (meta !== null) {
+    meta.setAttribute('content', THEME_COLOR[theme])
+  }
 }
 
 /** Simpan pilihan pengguna supaya tidak berubah saat halaman dimuat ulang. */
@@ -29,50 +43,38 @@ function persistTheme(theme: Theme): void {
  * dipasang skrip kecil di index.html sebelum React dimuat. Dengan begitu
  * tidak ada kedipan tema saat halaman dibuka.
  *
- * Urutan penentuan tema:
- * 1. Pilihan tersimpan pengguna di localStorage.
- * 2. Preferensi sistem lewat prefers-color-scheme, hanya bila pengguna belum
- *    pernah memilih sendiri.
- * 3. Tema terang sebagai bawaan.
+ * Bawaan SELALU terang. Preferensi sistem lewat prefers-color-scheme sengaja
+ * tidak dipakai sebagai penentu awal, karena pemilik project ingin website
+ * selalu terbuka dalam mode terang. Tema gelap hanya berlaku kalau pengguna
+ * memilihnya sendiri lewat tombol tema, dan pilihan itu tersimpan.
  */
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(readThemeFromDocument)
 
-  // Jaga state tetap selaras bila atribut data-theme diubah dari luar, dan
-  // ikuti perubahan preferensi sistem selama pengguna belum memilih sendiri.
+  // Jaga state tetap selaras bila atribut data-theme diubah dari luar.
+  // Tidak ada lagi langganan prefers-color-scheme, jadi tema tidak pernah
+  // berubah sendiri mengikuti pengaturan sistem operasi.
   useEffect(() => {
     const root = document.documentElement
 
-    const syncFromDocument = () => setTheme(readThemeFromDocument())
+    const syncFromDocument = () => {
+      const current = readThemeFromDocument()
+      setTheme(current)
+      applyThemeColor(current)
+    }
     syncFromDocument()
 
     const observer = new MutationObserver(syncFromDocument)
     observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] })
 
-    const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const onSystemChange = (event: MediaQueryListEvent) => {
-      let hasStoredChoice = false
-      try {
-        hasStoredChoice = window.localStorage.getItem(THEME_STORAGE_KEY) !== null
-      } catch {
-        hasStoredChoice = false
-      }
-      if (hasStoredChoice) {
-        return
-      }
-      const next: Theme = event.matches ? 'dark' : 'light'
-      root.setAttribute('data-theme', next)
-    }
-    media.addEventListener('change', onSystemChange)
-
     return () => {
       observer.disconnect()
-      media.removeEventListener('change', onSystemChange)
     }
   }, [])
 
   const setThemeAndPersist = useCallback((next: Theme) => {
     document.documentElement.setAttribute('data-theme', next)
+    applyThemeColor(next)
     persistTheme(next)
     setTheme(next)
   }, [])
