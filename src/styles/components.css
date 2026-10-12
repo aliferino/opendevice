@@ -244,36 +244,6 @@
   flex: none;
 }
 
-/* Catatan data contoh */
-
-.data-notice {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2) var(--space-3);
-  padding: var(--space-4) var(--space-5);
-  background-color: var(--c-subtle);
-  border: 1px solid var(--c-line);
-  border-left: 3px solid var(--c-accent);
-  border-radius: var(--radius-sm);
-  font-size: var(--step--1);
-  line-height: var(--leading-body);
-  color: var(--c-muted-strong);
-}
-
-.data-notice__icon {
-  flex: none;
-  color: var(--c-accent);
-}
-
-.data-notice__tag {
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--c-accent);
-  font-size: var(--step--1);
-}
-
 /* Kepala halaman dalam */
 
 .page-header {

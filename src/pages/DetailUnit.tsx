@@ -4,7 +4,6 @@ import { ColorGallery } from '../components/ColorGallery'
 import { Badge } from '../components/Badge'
 import { Breadcrumbs } from '../components/Breadcrumbs'
 import { ButtonExtLink, ButtonLink } from '../components/Button'
-import { DataNotice } from '../components/DataNotice'
 import { IphoneCard } from '../components/IphoneCard'
 import { Icon } from '../components/Icon'
 import { Check } from 'lucide-react'
@@ -152,13 +151,6 @@ export function DetailUnit({ slug }: DetailUnitProps) {
               ))}
             </dl>
           </section>
-
-          <div className="detail__section">
-            <DataNotice>
-              spesifikasi dan tarif di atas adalah contoh. Verifikasi ulang ke sumber resmi dan sesuaikan dengan unit
-              yang benar benar Anda sewakan.
-            </DataNotice>
-          </div>
 
           <section className="detail__section" aria-labelledby="mirip-title">
             <h2 className="detail__section-title" id="mirip-title">

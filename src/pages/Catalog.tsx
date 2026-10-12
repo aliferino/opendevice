@@ -2,7 +2,6 @@ import { ChevronDown } from 'lucide-react'
 import { Container } from '../components/Container'
 import { PageHeader } from '../components/PageHeader'
 import { IphoneCard } from '../components/IphoneCard'
-import { DataNotice } from '../components/DataNotice'
 import { ButtonLink, ButtonAction } from '../components/Button'
 import { Icon } from '../components/Icon'
 import { filterUnits, getFamilies, getAllUnits } from '../data/iphone'
@@ -146,13 +145,6 @@ export function Catalog() {
               </div>
             </div>
           )}
-        </div>
-
-        <div style={{ marginTop: 'var(--space-7)' }}>
-          <DataNotice>
-            tarif dan ketersediaan adalah contoh. Ganti di src/data/iphone.ts dan sesuaikan dengan stok nyata toko
-            Anda.
-          </DataNotice>
         </div>
 
         <div style={{ marginTop: 'var(--space-6)' }}>

@@ -1,7 +1,6 @@
 import { Container } from '../components/Container'
 import { PageHeader } from '../components/PageHeader'
 import { ButtonLink } from '../components/Button'
-import { DataNotice } from '../components/DataNotice'
 import { Icon } from '../components/Icon'
 import { Check } from 'lucide-react'
 import { SITE, TERMS_SECTIONS } from '../lib/constants'
@@ -40,11 +39,6 @@ export function Terms() {
 
       <Container>
         <div ref={revealRef} className="page-body">
-          <DataNotice>
-            isi di halaman ini adalah contoh untuk keperluan tampilan. Sebelum website dipublikasikan, ganti dengan
-            pasal yang sudah diperiksa dan disetujui pemilik toko di src/lib/constants.ts
-          </DataNotice>
-
           <div className="terms__layout">
             <nav className="terms__nav" aria-labelledby="terms-nav-title">
               <h2 className="terms__nav-title" id="terms-nav-title">

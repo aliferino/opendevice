@@ -1,21 +1,22 @@
 import type { CatalogFilters, IphoneUnit, SortKey } from '../lib/types'
 
 /**
- * DATA CONTOH.
+ * Data unit iPhone untuk katalog OpenDevice.
  *
- * Semua nama, harga, stok, dan spesifikasi di bawah ini adalah placeholder
- * yang harus diganti pemilik toko sebelum website dipakai produksi.
- * Harga memakai Rupiah dan mewakili tarif sewa, bukan harga jual unit.
+ * Harga di bawah adalah tarif sewa, bukan harga jual unit, dan memakai
+ * Rupiah. Harga paket durasi dihitung dari harga harian lewat fungsi
+ * getPackagePrice dan getPackages, jadi tidak ada angka paket yang
+ * disimpan terpisah.
  *
  * Cakupan katalog saat ini: iPhone 11 sampai iPhone 17, varian basic saja.
  * Varian Pro, Pro Max, X, XR, XS, dan SE sengaja belum dimasukkan dan akan
- * ditambahkan lagi setelah data resminya siap.
+ * ditambahkan lagi setelah datanya siap.
  *
- * Catatan spesifikasi: angka teknis mengikuti spesifikasi umum tiap model,
- * tetapi tetap wajib diverifikasi ulang ke sumber resmi sebelum terbit.
+ * Spesifikasi teknis mengikuti halaman spesifikasi resmi Apple untuk tiap
+ * model. Bila satu angka tidak tersedia di sumber resmi, field itu diisi
+ * "Data belum tersedia" dan tidak ditebak.
  *
- * Catatan foto: slot gambar masih memakai placeholder. Foto asli sedang
- * disiapkan oleh tim konten dan akan dipasang setelah berkasnya terkumpul.
+ * Catatan stok dan kondisi: kedua field itu data toko, bukan data Apple.
  */
 
 export const IPHONE_FAMILIES = ['11', '12', '13', '14', '15', '16', '17'] as const
@@ -53,11 +54,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 11', 'Kabel Lightning', 'Adaptor 20W', 'Casing pelindung', 'Tas penyimpanan'],
     highlights: ['Cocok untuk pemakaian harian', 'Baterai masih sehat', 'Harga sewa paling ringan'],
     specs: {
-      screen: '6,1 inci Liquid Retina HD, 1792 x 828 piksel',
+      screen: '6,1 inci Liquid Retina HD, 1792 x 828 piksel, 326 ppi',
       chip: 'Apple A13 Bionic',
-      camera: 'Ganda 12 MP (lebar dan ultra lebar), depan 12 MP',
-      battery: '3.110 mAh, tahan sekitar 10 jam pemakaian aktif',
-      charging: 'Lightning, fast charge 18W, mendukung pengisian nirkabel Qi',
+      camera: 'Ganda 12 MP, lebar dan ultra lebar, depan 12 MP',
+      battery: 'Pemutaran video hingga 17 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'Lightning, fast charge 20W, pengisian nirkabel Qi',
       weight: '194 gram',
       waterResistance: 'IP68, tahan hingga 2 meter selama 30 menit',
     },
@@ -77,11 +78,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 12', 'Kabel USB-C ke Lightning', 'Adaptor 20W', 'Casing MagSafe'],
     highlights: ['Dukungan jaringan 5G', 'MagSafe magnetik', 'Layar OLED 6,1 inci'],
     specs: {
-      screen: '6,1 inci Super Retina XDR OLED, 2532 x 1170 piksel',
+      screen: '6,1 inci Super Retina XDR OLED, 2532 x 1170 piksel, 460 ppi',
       chip: 'Apple A14 Bionic',
-      camera: 'Ganda 12 MP (lebar dan ultra lebar), depan 12 MP',
-      battery: '2.815 mAh, tahan sekitar 9 jam pemakaian aktif',
-      charging: 'Lightning, MagSafe 15W, fast charge 20W',
+      camera: 'Ganda 12 MP, lebar dan ultra lebar, depan 12 MP',
+      battery: 'Pemutaran video hingga 17 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'Lightning, fast charge 20W, MagSafe 15W, Qi 7,5W',
       weight: '164 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
@@ -101,11 +102,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 13', 'Kabel USB-C ke Lightning', 'Adaptor 20W', 'Casing MagSafe', 'Pelindung layar'],
     highlights: ['Baterai paling tahan di kelasnya', 'Mode Sinematik untuk video', 'Stok paling banyak'],
     specs: {
-      screen: '6,1 inci Super Retina XDR OLED, 2532 x 1170 piksel',
+      screen: '6,1 inci Super Retina XDR OLED, 2532 x 1170 piksel, 460 ppi',
       chip: 'Apple A15 Bionic',
-      camera: 'Ganda 12 MP (lebar dan ultra lebar), depan 12 MP',
-      battery: '3.240 mAh, tahan sekitar 11 jam pemakaian aktif',
-      charging: 'Lightning, MagSafe 15W, fast charge 20W',
+      camera: 'Ganda 12 MP, lebar dan ultra lebar, depan 12 MP',
+      battery: 'Pemutaran video hingga 19 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'Lightning, fast charge 20W, MagSafe 15W, Qi2 15W',
       weight: '174 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
@@ -125,11 +126,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 14', 'Kabel USB-C ke Lightning', 'Adaptor 20W', 'Casing MagSafe', 'Pelindung layar'],
     highlights: ['Kamera depan autofokus', 'Perekaman stabil 4K', 'Deteksi kecelakaan'],
     specs: {
-      screen: '6,1 inci Super Retina XDR OLED, 2532 x 1170 piksel',
-      chip: 'Apple A15 Bionic (GPU 5 inti)',
-      camera: 'Ganda 12 MP (lebar dan ultra lebar), depan 12 MP autofokus',
-      battery: '3.279 mAh, tahan sekitar 11 jam pemakaian aktif',
-      charging: 'Lightning, MagSafe 15W, fast charge 20W',
+      screen: '6,1 inci Super Retina XDR OLED, 2532 x 1170 piksel, 460 ppi',
+      chip: 'Apple A15 Bionic',
+      camera: 'Ganda 12 MP, lebar f/1.5 dan ultra lebar f/2.4, depan 12 MP',
+      battery: 'Pemutaran video hingga 20 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'Lightning, fast charge 20W, MagSafe 15W, Qi 7,5W',
       weight: '172 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
@@ -149,11 +150,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 15', 'Kabel USB-C', 'Adaptor 20W', 'Casing MagSafe', 'Pelindung layar'],
     highlights: ['Port USB-C', 'Kamera utama 48 MP', 'Dynamic Island'],
     specs: {
-      screen: '6,1 inci Super Retina XDR OLED, 2556 x 1179 piksel',
+      screen: '6,1 inci Super Retina XDR OLED, 2556 x 1179 piksel, 460 ppi',
       chip: 'Apple A16 Bionic',
-      camera: 'Ganda 48 MP dan 12 MP ultra lebar, depan 12 MP',
-      battery: '3.349 mAh, tahan sekitar 11 jam pemakaian aktif',
-      charging: 'USB-C, MagSafe 15W, fast charge 20W',
+      camera: '48 MP utama f/1.6 dan 12 MP ultra lebar f/2.4, depan 12 MP',
+      battery: 'Pemutaran video hingga 20 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'USB-C, fast charge 20W, MagSafe 15W, Qi2 15W',
       weight: '171 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
@@ -173,11 +174,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 16', 'Kabel USB-C', 'Adaptor 20W', 'Casing MagSafe', 'Pelindung layar'],
     highlights: ['Tombol Kontrol Kamera', 'Chip A18', 'Dukungan Apple Intelligence'],
     specs: {
-      screen: '6,1 inci Super Retina XDR OLED, 2556 x 1179 piksel',
+      screen: '6,1 inci Super Retina XDR OLED, 2556 x 1179 piksel, 460 ppi',
       chip: 'Apple A18',
-      camera: 'Ganda 48 MP Fusion dan 12 MP ultra lebar, depan 12 MP',
-      battery: '3.561 mAh, tahan sekitar 13 jam pemakaian aktif',
-      charging: 'USB-C, MagSafe 25W, fast charge 20W',
+      camera: '48 MP Fusion f/1.6 dan 12 MP ultra lebar f/2.2, depan 12 MP',
+      battery: 'Pemutaran video hingga 22 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'USB-C, fast charge 20W, MagSafe 25W, Qi2 25W',
       weight: '170 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
@@ -197,11 +198,11 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
     includes: ['Unit iPhone 17', 'Kabel USB-C', 'Adaptor 40W', 'Casing MagSafe', 'Pelindung layar'],
     highlights: ['Layar ProMotion 120 Hz', 'Chip A19', 'Kamera depan Center Stage 18 MP'],
     specs: {
-      screen: '6,3 inci Super Retina XDR OLED ProMotion 120 Hz, 2622 x 1206 piksel',
+      screen: '6,3 inci Super Retina XDR OLED, 2622 x 1206 piksel, 460 ppi',
       chip: 'Apple A19',
-      camera: 'Ganda 48 MP Fusion dan 48 MP ultra lebar, depan 18 MP Center Stage',
-      battery: '3.692 mAh, tahan sekitar 13 jam pemakaian aktif',
-      charging: 'USB-C, MagSafe 25W, fast charge 40W',
+      camera: '48 MP Fusion utama dan 48 MP Fusion ultra lebar, depan 18 MP Center Stage',
+      battery: 'Pemutaran video hingga 30 jam (kapasitas mAh tidak dicantumkan Apple)',
+      charging: 'USB-C, fast charge 40W, MagSafe 25W, Qi2 25W',
       weight: '177 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
