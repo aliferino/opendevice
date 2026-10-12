@@ -228,22 +228,26 @@
   color: var(--c-accent);
 }
 
-/* Harga sewa per paket durasi. Empat paket, jadi dua kolom di layar sempit
-   dan empat kolom di layar lebar supaya tetap ringkas. */
+/* Harga sewa per paket durasi.
+   Jumlah kolom mengikuti lebar wadah yang benar benar tersedia, bukan lebar
+   viewport. Ini akar masalah sebelumnya: di layar lebar, bagian harga duduk
+   di kolom sempit hasil grid dua kolom halaman detail, jadi media query
+   viewport memberi jumlah kolom yang terlalu banyak dan teks harga meluber
+   keluar kolomnya.
+
+   auto-fit dengan lebar minimum 11rem menjamin setiap kolom selalu cukup
+   untuk harga terpanjang seperti Rp 1.600.000 pada ukuran font saat ini,
+   dan min(100%, 11rem) mencegah kolom lebih lebar dari wadahnya di layar
+   sangat sempit. Jadi jumlah kolom menyesuaikan sendiri: satu kolom di
+   ponsel, dua sampai tiga kolom di layar lebar, tanpa angka ajaib. */
 .detail__price {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
   gap: var(--space-5);
   padding: var(--space-5);
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
   background-color: var(--c-surface);
-}
-
-@media (min-width: 640px) {
-  .detail__price {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
 
 .detail__price-label {
@@ -256,6 +260,9 @@
   font-size: var(--step-2);
   font-weight: 600;
   letter-spacing: var(--tracking-tight);
+  /* Jaring pengaman: kalau harga sangat panjang, biarkan membungkus ke baris
+     berikutnya, jangan sampai keluar dari kolom. */
+  overflow-wrap: break-word;
 }
 
 .detail__price-note {
