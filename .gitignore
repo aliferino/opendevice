@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Folder kerja Vercel CLI. Isinya data lokal project dan tautan deploy,
+# jadi tidak perlu ikut ter-commit.
+.vercel
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -34,3 +38,5 @@ dist-ssr
 # root juga tidak terabaikan.
 /.*.sh
 /.probe.sh
+
+.vercel
