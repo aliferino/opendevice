@@ -136,7 +136,15 @@ export function useScrollReveal<T extends HTMLElement>(
       if (!element) {
         return
       }
-      gsap.set(element.querySelectorAll(REVEAL_SELECTOR), { clearProps: 'all' })
+      // Lewati bila tidak ada elemen reveal di dalam wadah. Tanpa penjaga ini,
+      // querySelectorAll mengembalikan NodeList kosong dan GSAP mencatat
+      // peringatan "target not found" ke konsol, padahal tidak ada yang perlu
+      // dibersihkan.
+      const targets = element.querySelectorAll(REVEAL_SELECTOR)
+      if (targets.length === 0) {
+        return
+      }
+      gsap.set(targets, { clearProps: 'all' })
     }
   }, [])
 

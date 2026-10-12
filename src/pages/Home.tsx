@@ -37,6 +37,12 @@ export function Home() {
   useGSAP(
     () => {
       const targets = gsap.utils.toArray<HTMLElement>('[data-hero] [data-reveal]')
+      // Lewati bila tidak ada elemen hero. Tanpa penjaga ini, GSAP mencatat
+      // peringatan "target not found" ke konsol padahal tidak ada yang perlu
+      // dianimasikan.
+      if (targets.length === 0) {
+        return
+      }
       if (prefersReducedMotion) {
         gsap.set(targets, { opacity: 1, y: 0 })
         return
