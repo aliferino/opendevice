@@ -20,7 +20,7 @@ import { usePrefersReducedMotion } from '../hooks/useReducedMotion'
  * 2. Reveal saat scroll untuk bagian lainnya, ditangani useScrollReveal.
  *
  * Hero berada di luar wadah revealRef supaya useScrollReveal tidak menyetel
- * autoAlpha pada elemen hero. Kalau keduanya menyentuh elemen yang sama,
+ * opacity pada elemen hero. Kalau keduanya menyentuh elemen yang sama,
  * animasi hero berjalan dari 0 ke 0 dan hero tidak pernah tampil.
  */
 export function Home() {
@@ -39,19 +39,19 @@ export function Home() {
     () => {
       const targets = gsap.utils.toArray<HTMLElement>('[data-hero] [data-reveal]')
       if (prefersReducedMotion) {
-        gsap.set(targets, { autoAlpha: 1, y: 0 })
+        gsap.set(targets, { opacity: 1, y: 0 })
         return
       }
       gsap.fromTo(
         targets,
-        { autoAlpha: 0, y: MOTION.distance },
+        { opacity: 0, y: MOTION.distance },
         {
-          autoAlpha: 1,
+          opacity: 1,
           y: 0,
           duration: MOTION.duration,
           ease: 'power2.out',
           stagger: MOTION.heroStagger,
-          clearProps: 'transform,opacity,visibility',
+          clearProps: 'transform,opacity',
         },
       )
     },

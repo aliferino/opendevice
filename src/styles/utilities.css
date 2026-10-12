@@ -110,8 +110,10 @@
   border: 0;
 }
 
-/* Elemen dengan atribut data-reveal disembunyikan lewat JS (autoAlpha),
-   bukan lewat CSS, supaya konten tetap tampil bila JavaScript gagal. */
+/* Elemen dengan atribut data-reveal disembunyikan lewat JS memakai opacity,
+   bukan lewat CSS dan bukan lewat visibility, supaya konten tetap tampil bila
+   JavaScript gagal. opacity 0 juga tidak menyembunyikan elemen dari pembaca
+   layar, berbeda dengan visibility hidden yang membuat elemen diabaikan. */
 
 .is-revealed {
   will-change: auto;

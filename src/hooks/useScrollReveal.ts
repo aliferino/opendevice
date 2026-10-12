@@ -29,6 +29,14 @@ export interface ScrollRevealOptions {
  * kembali ke keadaan awal dan animasi hanya terlihat sekali.
  *
  * Tinggal tambahkan atribut data-reveal pada elemen yang ingin dianimasikan.
+ *
+ * Kenapa memakai opacity, bukan autoAlpha:
+ * autoAlpha mengubah visibility dan opacity sekaligus, sehingga GSAP memasang
+ * visibility hidden pada elemen yang dianggap belum masuk layar. Akibatnya teks
+ * kartu bisa hilang walau kartunya masih terlihat di layar, dan elemen itu juga
+ * tersembunyi dari pembaca layar. opacity saja tidak menyembunyikan elemen dari
+ * pembaca layar, jadi konten tetap terbaca walau animasi belum berjalan atau
+ * JavaScript gagal di tengah jalan.
  */
 export function useScrollReveal<T extends HTMLElement>(
   options: ScrollRevealOptions = {},
@@ -48,14 +56,14 @@ export function useScrollReveal<T extends HTMLElement>(
       // dan tidak ada ScrollTrigger yang dibuat, jadi tidak ada elemen yang
       // bisa tertinggal dalam keadaan tersembunyi.
       if (prefersReducedMotion) {
-        gsap.set(targets, { clearProps: 'all', autoAlpha: 1, y: 0 })
+        gsap.set(targets, { clearProps: 'all', opacity: 1, y: 0 })
         targets.forEach((element) => element.classList.add(REVEALED_CLASS))
         return
       }
 
       const reveal = (batch: Element[]) =>
         gsap.to(batch, {
-          autoAlpha: 1,
+          opacity: 1,
           y: 0,
           duration: MOTION.duration,
           ease: EASE,
@@ -65,7 +73,7 @@ export function useScrollReveal<T extends HTMLElement>(
 
       const reset = (batch: Element[]) =>
         gsap.to(batch, {
-          autoAlpha: 0,
+          opacity: 0,
           y: MOTION.distance,
           duration: MOTION.duration,
           ease: EASE,
@@ -73,8 +81,9 @@ export function useScrollReveal<T extends HTMLElement>(
           overwrite: true,
         })
 
-      gsap.set(targets, { autoAlpha: 0, y: MOTION.distance })
+      gsap.set(targets, { opacity: 0, y: MOTION.distance })
 
+      // Reveal saat elemen masuk layar, dari bawah maupun dari atas.
       ScrollTrigger.batch(targets, {
         start: MOTION.start,
         end: 'bottom top',
@@ -82,6 +91,20 @@ export function useScrollReveal<T extends HTMLElement>(
         batchMax: 6,
         onEnter: reveal,
         onEnterBack: reveal,
+      })
+
+      // Reset hanya setelah elemen BENAR BENAR keluar layar. Ambang masuk
+      // (MOTION.start, yaitu top 85%) sengaja tidak dipakai untuk reset, karena
+      // pada titik itu sebagian kartu masih terlihat di layar. Kalau reset
+      // dipasang di situ, teks kartu hilang saat kartu masih tampak, dan itu
+      // yang membuat halaman terlihat rusak. Dengan ambang top bottom dan
+      // bottom top, elemen baru disembunyikan setelah seluruh badannya keluar
+      // dari viewport.
+      ScrollTrigger.batch(targets, {
+        start: 'top bottom',
+        end: 'bottom top',
+        interval: 0.1,
+        batchMax: 6,
         onLeave: reset,
         onLeaveBack: reset,
       })

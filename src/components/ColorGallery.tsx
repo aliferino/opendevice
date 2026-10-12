@@ -58,13 +58,13 @@ export function ColorGallery({ unit }: ColorGalleryProps) {
       }
       gsap.fromTo(
         image,
-        { autoAlpha: 0, y: MOTION.distance / 2 },
+        { opacity: 0, y: MOTION.distance / 2 },
         {
-          autoAlpha: 1,
+          opacity: 1,
           y: 0,
           duration: MOTION.duration,
           ease: 'power2.out',
-          clearProps: 'transform,opacity,visibility',
+          clearProps: 'transform,opacity',
         },
       )
     },

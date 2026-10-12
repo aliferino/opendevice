@@ -22,8 +22,8 @@ export function usePageTransition<T extends HTMLElement>(): React.RefObject<T | 
       }
       gsap.fromTo(
         container.current,
-        { autoAlpha: 0, y: 12 },
-        { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out', clearProps: 'transform' },
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', clearProps: 'transform,opacity' },
       )
     },
     {
