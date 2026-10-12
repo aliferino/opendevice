@@ -20,6 +20,25 @@ import type { CatalogFilters, IphoneUnit, SortKey } from '../lib/types'
 
 export const IPHONE_FAMILIES = ['11', '12', '13', '14', '15', '16', '17'] as const
 
+/**
+ * Paket durasi sewa beserta pengalinya terhadap harga harian.
+ *
+ * Pengali sengaja sama untuk semua model, sesuai permintaan pemilik project:
+ * harga paket dihitung dari tarif harian tiap model. Karena paket yang lebih
+ * panjang memakai pengali yang tumbuh lebih lambat daripada jumlah harinya,
+ * tarif efektif per hari jadi makin murah untuk sewa panjang. Itu memang
+ * maksudnya.
+ */
+export const RENTAL_PACKAGES = [
+  { days: 1, multiplier: 1 },
+  { days: 3, multiplier: 2 },
+  { days: 5, multiplier: 3 },
+  { days: 7, multiplier: 4 },
+] as const
+
+/** Paket durasi yang tersedia. */
+export type RentalPackageDays = (typeof RENTAL_PACKAGES)[number]['days']
+
 export const IPHONE_UNITS: readonly IphoneUnit[] = [
   {
     slug: 'iphone-11',
@@ -42,7 +61,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '194 gram',
       waterResistance: 'IP68, tahan hingga 2 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 45_000, perWeek: 250_000 },
+    rentalPrice: { perDay: 100_000 },
     popular: true,
   },
   {
@@ -66,7 +85,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '164 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 65_000, perWeek: 355_000 },
+    rentalPrice: { perDay: 150_000 },
     popular: false,
   },
   {
@@ -90,7 +109,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '174 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 90_000, perWeek: 490_000 },
+    rentalPrice: { perDay: 200_000 },
     popular: true,
   },
   {
@@ -114,7 +133,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '172 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 110_000, perWeek: 600_000 },
+    rentalPrice: { perDay: 250_000 },
     popular: false,
   },
   {
@@ -138,7 +157,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '171 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 135_000, perWeek: 740_000 },
+    rentalPrice: { perDay: 300_000 },
     popular: true,
   },
   {
@@ -162,7 +181,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '170 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 165_000, perWeek: 900_000 },
+    rentalPrice: { perDay: 350_000 },
     popular: false,
   },
   {
@@ -186,7 +205,7 @@ export const IPHONE_UNITS: readonly IphoneUnit[] = [
       weight: '177 gram',
       waterResistance: 'IP68, tahan hingga 6 meter selama 30 menit',
     },
-    rentalPrice: { perDay: 220_000, perWeek: 1_200_000 },
+    rentalPrice: { perDay: 400_000 },
     popular: false,
   },
 ]
@@ -218,9 +237,27 @@ export function getDailyPrice(unit: IphoneUnit): number {
   return unit.rentalPrice.perDay
 }
 
-/** Harga sewa mingguan unit. */
-export function getWeeklyPrice(unit: IphoneUnit): number {
-  return unit.rentalPrice.perWeek
+/**
+ * Harga total paket durasi untuk satu unit.
+ *
+ * Dihitung dari harga harian dikali pengali paket, jadi tidak ada angka
+ * paket yang disimpan terpisah dan tidak ada risiko data tidak sinkron saat
+ * harga harian diubah.
+ */
+export function getPackagePrice(unit: IphoneUnit, days: RentalPackageDays): number {
+  const pack = RENTAL_PACKAGES.find((item) => item.days === days)
+  if (pack === undefined) {
+    return getDailyPrice(unit)
+  }
+  return getDailyPrice(unit) * pack.multiplier
+}
+
+/** Daftar paket durasi lengkap dengan harga totalnya untuk satu unit. */
+export function getPackages(unit: IphoneUnit): readonly { days: RentalPackageDays; price: number }[] {
+  return RENTAL_PACKAGES.map((pack) => ({
+    days: pack.days,
+    price: getDailyPrice(unit) * pack.multiplier,
+  }))
 }
 
 /** Unit sejenis untuk blok rekomendasi di halaman detail. */

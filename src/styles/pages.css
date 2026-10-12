@@ -228,8 +228,8 @@
   color: var(--c-accent);
 }
 
-/* Harga sewa tunggal per unit. Kapasitas tidak lagi ditampilkan, jadi cukup
-   dua angka: harian dan mingguan. */
+/* Harga sewa per paket durasi. Empat paket, jadi dua kolom di layar sempit
+   dan empat kolom di layar lebar supaya tetap ringkas. */
 .detail__price {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -238,6 +238,12 @@
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
   background-color: var(--c-surface);
+}
+
+@media (min-width: 640px) {
+  .detail__price {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .detail__price-label {

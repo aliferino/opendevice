@@ -118,28 +118,40 @@
 }
 
 .unit-card__price {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-3);
   padding-top: var(--space-3);
   border-top: 1px solid var(--c-line);
 }
 
-.unit-card__price dt {
+.unit-card__price-label {
+  font-size: var(--step--1);
+  color: var(--c-muted);
+  margin-bottom: var(--space-2);
+}
+
+/* Daftar paket durasi. Dua kolom supaya empat paket tersusun rapi tanpa
+   membuat kartu terlalu tinggi. */
+.unit-card__packages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3);
+}
+
+.unit-card__package {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.unit-card__package dt {
   font-size: var(--step--1);
   color: var(--c-muted);
 }
 
-.unit-card__price dd {
-  font-size: var(--step-1);
+.unit-card__package dd {
+  font-size: var(--step-0);
   font-weight: 600;
   letter-spacing: var(--tracking-tight);
-}
-
-.unit-card__price-scale {
-  font-weight: 400;
-  font-size: var(--step--1);
-  color: var(--c-muted);
 }
 
 /* Placeholder gambar */

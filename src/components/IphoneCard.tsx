@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { IphoneUnit } from '../lib/types'
-import { formatRupiah, formatRupiahShort } from '../lib/format'
-import { getDailyPrice, getWeeklyPrice } from '../data/iphone'
+import { formatRupiah } from '../lib/format'
+import { getPackages } from '../data/iphone'
 import { Badge } from './Badge'
 import { UnitPhoto } from './UnitPhoto'
 
@@ -16,10 +16,13 @@ export interface IphoneCardProps {
  *
  * Kapasitas sengaja tidak ditampilkan. Penyewa memilih berdasarkan seri dan
  * harga, bukan kapasitas penyimpanan.
+ *
+ * Harga ditampilkan sekali saja, dalam bentuk daftar paket durasi. Tidak ada
+ * baris harga harian terpisah, karena paket 1 hari sudah mewakili harga
+ * harian, dan menampilkan keduanya hanya menduplikasi angka yang sama.
  */
 export function IphoneCard({ unit }: IphoneCardProps) {
-  const dailyPrice = getDailyPrice(unit)
-  const weeklyPrice = getWeeklyPrice(unit)
+  const packages = getPackages(unit)
   const isAvailable = unit.stock > 0
 
   return (
@@ -47,19 +50,17 @@ export function IphoneCard({ unit }: IphoneCardProps) {
 
         <p className="unit-card__tagline">{unit.tagline}</p>
 
-        <dl className="unit-card__price">
-          <div>
-            <dt>Per hari</dt>
-            <dd>
-              {formatRupiah(dailyPrice)}
-              <span className="unit-card__price-scale"> ({formatRupiahShort(dailyPrice)})</span>
-            </dd>
-          </div>
-          <div>
-            <dt>Per minggu</dt>
-            <dd>{formatRupiah(weeklyPrice)}</dd>
-          </div>
-        </dl>
+        <div className="unit-card__price">
+          <p className="unit-card__price-label">Paket sewa</p>
+          <dl className="unit-card__packages">
+            {packages.map((pack) => (
+              <div className="unit-card__package" key={pack.days}>
+                <dt>{pack.days} hari</dt>
+                <dd>{formatRupiah(pack.price)}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
     </article>
   )

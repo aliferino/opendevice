@@ -8,7 +8,7 @@ import { DataNotice } from '../components/DataNotice'
 import { IphoneCard } from '../components/IphoneCard'
 import { Icon } from '../components/Icon'
 import { Check } from 'lucide-react'
-import { getDailyPrice, getRelatedUnits, getUnitBySlug, getWeeklyPrice } from '../data/iphone'
+import { getPackages, getRelatedUnits, getUnitBySlug } from '../data/iphone'
 import { formatRupiah } from '../lib/format'
 import { SITE } from '../lib/constants'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
@@ -49,6 +49,7 @@ export function DetailUnit({ slug }: DetailUnitProps) {
   }
 
   const related = getRelatedUnits(unit)
+  const packages = getPackages(unit)
   const whatsappNumber = SITE.whatsapp.replace(/[^\d]/g, '')
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     `Halo ${SITE.name}, saya ingin menyewa ${unit.name}. Mohon info ketersediaan dan total biayanya.`,
@@ -80,17 +81,16 @@ export function DetailUnit({ slug }: DetailUnitProps) {
               <div className="detail__section" data-reveal>
                 <h2 className="detail__section-title">Harga sewa</h2>
                 <dl className="detail__price">
-                  <div className="detail__price-item">
-                    <dt className="detail__price-label">Per hari</dt>
-                    <dd className="detail__price-value">{formatRupiah(getDailyPrice(unit))}</dd>
-                  </div>
-                  <div className="detail__price-item">
-                    <dt className="detail__price-label">Per minggu</dt>
-                    <dd className="detail__price-value">{formatRupiah(getWeeklyPrice(unit))}</dd>
-                  </div>
+                  {packages.map((pack) => (
+                    <div className="detail__price-item" key={pack.days}>
+                      <dt className="detail__price-label">{pack.days} hari</dt>
+                      <dd className="detail__price-value">{formatRupiah(pack.price)}</dd>
+                    </div>
+                  ))}
                 </dl>
                 <p className="detail__price-note">
-                  Harga mingguan berlaku untuk 7 hari kalender dan lebih hemat dibanding tarif harian.
+                  Paket yang lebih panjang memakai tarif per hari lebih murah. Hubungi kami bila butuh durasi lain di
+                  luar paket ini.
                 </p>
               </div>
 

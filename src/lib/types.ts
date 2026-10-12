@@ -8,9 +8,15 @@ export type IphoneFamily = '11' | '12' | '13' | '14' | '15' | '16' | '17'
 
 export type UnitCondition = 'Sangat baik' | 'Baik' | 'Cukup'
 
+/**
+ * Harga sewa unit.
+ *
+ * Hanya harga harian yang disimpan. Harga paket durasi dihitung dari harga
+ * harian lewat getPackagePrice di src/data/iphone.ts, supaya tidak ada angka
+ * berulang yang bisa salah saat data diedit.
+ */
 export interface RentalPrice {
   readonly perDay: number
-  readonly perWeek: number
 }
 
 export interface IphoneSpec {
