@@ -33,6 +33,11 @@
 
 .hero__facts {
   display: grid;
+  /* Dua kolom, bukan empat. Kolom hero hanya sekitar 600px di layar lebar,
+     jadi empat kolom menyisakan sekitar 123px per fakta, sedangkan nilai
+     seperti "Mulai Rp 100.000" butuh lebih dari itu pada ukuran font ini.
+     Dua kolom memberi ruang cukup untuk semua nilai tanpa terpotong dan
+     tanpa membungkus, dan tetap terbaca sebagai blok ringkas. */
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-5);
   margin-top: var(--space-8);
@@ -63,10 +68,6 @@
     grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
     gap: var(--space-8);
-  }
-
-  .hero__facts {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

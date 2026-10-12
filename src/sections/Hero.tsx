@@ -2,13 +2,38 @@ import { Container } from '../components/Container'
 import { ButtonLink } from '../components/Button'
 import { UnitPhoto } from '../components/UnitPhoto'
 import { SITE } from '../lib/constants'
+import { formatRupiah } from '../lib/format'
+import { RENTAL_PACKAGES, getAllUnits, getDailyPrice } from '../data/iphone'
 
-const FACTS: readonly { readonly value: string; readonly label: string }[] = [
-  { value: '7 unit', label: 'siap disewa hari ini' },
-  { value: 'Harian', label: 'mulai Rp45.000' },
-  { value: 'Mingguan', label: 'lebih hemat hingga 20 persen' },
-  { value: 'Tanpa akun', label: 'pakai Apple ID Anda sendiri' },
-]
+/** Paket terpanjang, dipakai untuk menghitung penghematan terbesar. */
+const LONGEST_PACKAGE_DAYS = 7
+
+/**
+ * Susun fakta hero dari data unit, bukan angka tetap.
+ *
+ * Angka sengaja dihitung dari data supaya tidak pernah basi. Sebelumnya
+ * tarif terendah dan persentase hemat ditulis tetap di sini, dan keduanya
+ * jadi salah begitu harga di src/data/iphone.ts diubah. Sekarang kalau
+ * harga atau daftar paket berubah, teks di hero ikut menyesuaikan sendiri.
+ */
+function buildFacts(): readonly { readonly value: string; readonly label: string }[] {
+  const units = getAllUnits()
+  const dailyPrices = units.map(getDailyPrice)
+  const lowestDaily = dailyPrices.length > 0 ? Math.min(...dailyPrices) : 0
+
+  // Penghematan paket terpanjang dibanding membayar tarif harian selama
+  // jumlah hari yang sama. Dihitung dari pengali paket, bukan angka tetap.
+  const longest = RENTAL_PACKAGES.find((pack) => pack.days === LONGEST_PACKAGE_DAYS)
+  const savingsPercent =
+    longest === undefined ? 0 : Math.round((1 - longest.multiplier / longest.days) * 100)
+
+  return [
+    { value: `${units.length} unit`, label: 'siap disewa hari ini' },
+    { value: `Mulai ${formatRupiah(lowestDaily)}`, label: 'tarif paket 1 hari' },
+    { value: `Hemat ${savingsPercent} persen`, label: `paket ${LONGEST_PACKAGE_DAYS} hari dibanding harian` },
+    { value: 'Tanpa akun', label: 'pakai Apple ID Anda sendiri' },
+  ]
+}
 
 /**
  * Hero halaman beranda.
@@ -18,6 +43,8 @@ const FACTS: readonly { readonly value: string; readonly label: string }[] = [
  * (lihat catatan di styles/utilities.css).
  */
 export function Hero() {
+  const facts = buildFacts()
+
   return (
     <section className="hero" data-hero aria-labelledby="hero-title">
       <Container className="hero__inner">
@@ -41,7 +68,7 @@ export function Hero() {
           </div>
 
           <dl className="hero__facts" data-reveal>
-            {FACTS.map((fact) => (
+            {facts.map((fact) => (
               <div key={fact.label}>
                 <dt className="hero__fact-label">{fact.label}</dt>
                 <dd className="hero__fact-value">{fact.value}</dd>
